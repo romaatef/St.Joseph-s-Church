@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# نظام إدارة كنيسة القديس يوسف النجار
 
-## Getting Started
+تطبيق ويب عربي (RTL) لإدارة خدمة الكنيسة، مبني بـ Next.js و TypeScript و Tailwind CSS.
 
-First, run the development server:
+## التشغيل
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+افتح [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## إعداد Supabase
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+يتطلب تسجيل الدخول إعداد مشروع Supabase قبل تشغيل التطبيق:
 
-## Learn More
+1. أنشئ مشروعًا في Supabase، ثم أضف عنوان المشروع والمفتاح العام (`anon` أو `publishable`) إلى `.env.local`:
 
-To learn more about Next.js, take a look at the following resources:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-public-anon-key>
+   SUPABASE_SERVICE_ROLE_KEY=<server-only-service-role-key>
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    يمكن استخدام `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` بدل `NEXT_PUBLIC_SUPABASE_ANON_KEY`. احتفظ بالمفتاح الخدمي في `SUPABASE_SERVICE_ROLE_KEY` فقط؛ لا تضف إليه بادئة `NEXT_PUBLIC_` ولا تشاركه.
+2. شغّل محتوى `supabase/schema.sql` من SQL Editor في لوحة Supabase. ينشئ أو يكمل `profiles` المرتبط بـ`auth.users`، ويضيف `name` و`active` مع الحفاظ على ملفات المستخدمين الموجودة، ويضبط RLS.
+3. بعد استبدال `REPLACE_WITH_EXISTING_AUTH_USER_EMAIL` ببريد المستخدم الموجود، شغّل محتوى `supabase/first-admin.sql` مرة واحدة من SQL Editor. يضيف أو يحدّث صف هذا المستخدم وحده ليصبح Admin نشطًا، ويرفض التنفيذ إذا لم يوجد مستخدم بهذا البريد.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   لا تُنشئ كلمة مرور في جدول مخصص؛ بيانات الدخول تظل في Supabase Auth. حسابات Auth التي ليس لها سجل صلاحيات نشط في `profiles` لا يمكنها دخول التطبيق. لا يمكن للمستخدم العادي تعديل دوره أو حالة تفعيله عبر RLS.
+4. لتسجيل مسؤول مرحلة، أنشئ مستخدمه من **Authentication → Users**، أضف سجلًا بدور `stage_responsible` في `public.profiles`، ثم أضف مرحلة أو أكثر في `public.stage_responsibilities`. معرفات المراحل المسموح بها: `had-nursery`, `kg`, `g1-g2`, `g3-g4`, `g5-g6`, `prep`, `secondary`.
+5. بعد مراجعة قاعدة البيانات وتشغيل ترحيلات Viewer المحدودة المذكورة في قسم إدارة المستخدمين أدناه، أنشئ حساب `Viewer (Read-Only)` من صفحة المستخدمين بحساب Admin، وحدد له مرحلة أو أكثر؛ يقتصر عرض المراحل المرتبطة بالبيانات على المراحل المخصصة له، دون صلاحية تعديل.
+6. أعد تشغيل خادم التطوير بعد تغيير متغيرات البيئة.
 
-## Deploy on Vercel
+جلسات الدخول تُحدّث عبر `proxy.ts`، بينما تُفرض الأدوار وتخصيص المراحل داخل الصفحات وواجهات API على الخادم. سياسات RLS تحمي جداول الصلاحيات؛ Viewer ومسؤول المرحلة مقيدان بالمراحل المسندة إليهما، مع بقاء Viewer للقراءة فقط. جداول الأطفال والحضور الحالية مصدرها Google Sheets وليست جداول مراحل في Supabase.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### إدارة المستخدمين
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+لتمكين صفحة إدارة المستخدمين، عيّن `SUPABASE_SERVICE_ROLE_KEY` بمفتاح الخدمة في إعدادات الخادم المحلية فقط، ثم أعد تشغيل التطبيق. المفتاح مطلوب لاستعمال Supabase Auth Admin API وقراءة البريد الإلكتروني بأمان؛ ولا يُستورد في أي مكوّن عميل. لا تضف البادئة `NEXT_PUBLIC_` لهذا المفتاح.
+
+لا تشغّل ملفات التهيئة الكاملة على قاعدة قائمة لمجرد إضافة Viewer. ابدأ بمراجعة نتائج استعلامات القراءة فقط في `supabase/migrations/20261011_00_viewer_preflight.sql`. بعد الموافقة، شغّل `20261011_01_add_viewer_role.sql` ثم `20261011_02_viewer_access.sql` كلًا على حدة واترك كل ترحيل يكتمل. بعدهما شغّل `20261011_03_viewer_stage_assignments.sql` لتفعيل تعيين مرحلة أو أكثر لحساب Viewer؛ هذا الترحيل يحدّث دالة حفظ المستخدم فقط ولا يغيّر سياسات RLS أو بيانات الصفوف. اختبر الترحيلات على نسخة اختبار أولًا. لا تُشغّل `schema.sql` أو `user-management.sql` أو `stage-access-rls.sql` كبديل عنها. إنشاء الحسابات وتعطيلها يظلان متاحين للأدمن فقط، والتعطيل يغير `profiles.active` ولا يحذف حساب Auth.
+
+### صلاحيات مسؤول المرحلة
+
+يستطيع مسؤول المرحلة فتح جميع الأقسام الموجودة عدا إدارة المستخدمين، ولا تظهر له إلا المراحل المخصصة في القائمة ولوحة الرئيسية. صفحات الأقسام التي لم تُربط ببيانات بعد تظل حالات فارغة وتوضح نطاق المراحل المسموح بها.
+
+تظل صلاحيات مسؤول المرحلة وViewer مقيدة بالمراحل المسندة إليهما؛ Viewer يملك القراءة فقط. لا توجد حاليًا جداول بيانات للأولاد أو الحضور أو الافتقاد أو أعياد الميلاد في Supabase؛ لذلك تُقرأ هذه البيانات من Google Sheets عبر الخادم. عند إنشاء أي جدول بيانات مرتبط بمرحلة، يجب أن يحتوي `stage_id` وتُفعّل عليه RLS بسياسة قراءة تستخدم دالة قراءة مناسبة وسياسة كتابة تستخدم `public.has_stage_access(stage_id)` دون منح Viewer الكتابة.
+
+يتحقق API من دور المستخدم قبل تمرير أي عملية كتابة للحضور أو بيانات الأشخاص. يتطلب Apps Script الموثق توقيع HMAC ودور كاتب موثوقًا (Admin أو مسؤول مرحلة) على عمليات الكتابة. بعد اعتماد تغييرات Viewer، يجب نشر إصدار `apps-script/attendance.gs` المحدّث يدويًا؛ لا يتم نشره تلقائيًا من التطبيق.
