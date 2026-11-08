@@ -55,11 +55,13 @@ export function AttendanceManager({
     const requestId = ++latestDateRequest.current;
     const requestedGroups = group === "all" ? availableGroups : [group];
     setSelectedGroup(group);
-    setDates([]);
-    setSelectedDate("");
     setSelectedRows(new Set());
     setError("");
-    if (requestedGroups.length === 0) return;
+    if (requestedGroups.length === 0) {
+      setDates([]);
+      setSelectedDate("");
+      return;
+    }
 
     setLoadingDates(true);
     try {
@@ -98,7 +100,11 @@ export function AttendanceManager({
         results.every((result) => result.dates.some((candidate) => candidate.value === date.value)),
       );
       setDates(commonDates);
-      setSelectedDate(commonDates.at(-1)?.value ?? "");
+      setSelectedDate((currentDate) =>
+        commonDates.some((date) => date.value === currentDate)
+          ? currentDate
+          : commonDates.at(-1)?.value ?? "",
+      );
     } catch (loadError: unknown) {
       if (requestId === latestDateRequest.current) {
         setError(
@@ -330,17 +336,18 @@ export function AttendanceManager({
   }
 
   async function saveSelectedAttendance(present: boolean) {
-    if (bulkSaving || !selectedDate || selectedRows.size === 0 || selectedGroup === "all") return;
+    if (bulkSaving || !selectedDate || selectedRows.size === 0) return;
 
     const selectedChildren = children.filter((child) =>
       selectedRows.has(attendanceChildKey(child)),
     );
-    const previousStates = new Map(
-      selectedChildren.map((child) => [
-        attendanceChildKey(child),
-        presentRows.has(attendanceChildKey(child)),
-      ]),
-    );
+    const selectedByGroup = new Map<AttendanceGroup, AttendanceChild[]>();
+    for (const child of selectedChildren) {
+      const groupChildren = selectedByGroup.get(child.group) ?? [];
+      groupChildren.push(child);
+      selectedByGroup.set(child.group, groupChildren);
+    }
+    let savedGroupCount = 0;
     setBulkSaving(true);
     setPresentRows((current) => {
       const updated = new Set(current);
@@ -364,47 +371,41 @@ export function AttendanceManager({
         throw new Error("لا يمكن تسجيل حضور/غياب الأطفال غير المسجلين دفعة واحدة.");
       }
 
-      const nextPresentRows = new Set(
-        children
-          .filter(
-            (child) =>
-              child.group === selectedGroup &&
-              presentRows.has(attendanceChildKey(child)),
+      for (const [group, groupSelectedChildren] of selectedByGroup) {
+        const groupSelectedKeys = new Set(groupSelectedChildren.map(attendanceChildKey));
+        const nextPresentRows = children
+          .filter((child) =>
+            child.group === group &&
+            (groupSelectedKeys.has(attendanceChildKey(child))
+              ? present
+              : presentRows.has(attendanceChildKey(child))),
           )
-          .map((child) => child.row),
-      );
-      for (const child of selectedChildren) {
-        if (present) nextPresentRows.add(child.row);
-        else nextPresentRows.delete(child.row);
+          .map((child) => child.row)
+          .sort((left, right) => left - right);
+        const result = await postAttendanceApi<{ success: boolean }>({
+          action: "saveAttendance",
+          group,
+          date: selectedDate,
+          presentRows: nextPresentRows,
+        });
+        if (result.success !== true) throw new Error("لم يؤكد الخادم حفظ السجل المجمّع.");
+        savedGroupCount += 1;
       }
 
-      const result = await postAttendanceApi<{ success: boolean; updated: number; message: string }>({
-        action: "saveAttendance",
-        group: selectedGroup,
-        date: selectedDate,
-        presentRows: [...nextPresentRows].sort((left, right) => left - right),
-      });
-      if (result.success !== true) throw new Error("لم يؤكد الخادم حفظ السجل المجمّع.");
-
       setSelectedRows(new Set());
-      setNotice(result.message);
-    } catch (saveError) {
-      setPresentRows((current) => {
-        const updated = new Set(current);
-        for (const [key, wasPresent] of previousStates.entries()) {
-          if (wasPresent) updated.add(key);
-          else updated.delete(key);
-        }
-        return updated;
-      });
-      setChildren((current) =>
-        current.map((entry) => {
-          const key = attendanceChildKey(entry);
-          const previousPresent = previousStates.get(key) ?? entry.present;
-          return previousStates.has(key) ? { ...entry, present: previousPresent } : entry;
-        }),
+      setNotice(
+        present
+          ? `تم تسجيل حضور ${selectedChildren.length} شخصًا في ${savedGroupCount} مجموعة.`
+          : `تم تسجيل غياب ${selectedChildren.length} شخصًا في ${savedGroupCount} مجموعة.`,
       );
-      setError(saveError instanceof Error ? saveError.message : "تعذر حفظ الحضور الجماعي.");
+    } catch (saveError) {
+      await loadAttendance();
+      const message = saveError instanceof Error ? saveError.message : "تعذر حفظ الحضور الجماعي.";
+      setError(
+        savedGroupCount > 0
+          ? `تم الحفظ في ${savedGroupCount} مجموعة، لكن تعذر حفظ الباقي. تم تحديث السجل بالحالات المحفوظة. ${message}`
+          : message,
+      );
     } finally {
       setBulkSaving(false);
     }
@@ -563,7 +564,6 @@ export function AttendanceManager({
                     type="checkbox"
                     checked={allVisibleSelected}
                     onChange={() => {
-                      if (selectedGroup === "all") return;
                       if (allVisibleSelected) {
                         setSelectedRows((current) => {
                           const next = new Set(current);
@@ -582,20 +582,18 @@ export function AttendanceManager({
                         return next;
                       });
                     }}
-                    disabled={selectedGroup === "all" || selectableChildren.length === 0 || bulkSaving}
+                    disabled={selectableChildren.length === 0 || bulkSaving}
                     aria-label="تحديد كل النتائج المرئية"
                     className="size-4"
                   />
-                  {selectedGroup === "all"
-                    ? "اختياري تحديد عدة أشخاص متاح فقط عند اختيار مجموعة واحدة"
-                    : "تحديد كل النتائج المرئية"}
+                  تحديد كل النتائج المرئية
                 </label>
                 <div className="flex flex-wrap gap-2">
                   <Button
                     type="button"
                     variant="primary"
                     size="sm"
-                    disabled={selectedGroup === "all" || bulkSaving || selectedRows.size === 0 || loadingChildren}
+                    disabled={bulkSaving || selectedRows.size === 0 || loadingChildren}
                     onClick={() => void saveSelectedAttendance(true)}
                   >
                     تسجيل حضور المحددين
@@ -604,7 +602,7 @@ export function AttendanceManager({
                     type="button"
                     variant="outline"
                     size="sm"
-                    disabled={selectedGroup === "all" || bulkSaving || selectedRows.size === 0 || loadingChildren}
+                    disabled={bulkSaving || selectedRows.size === 0 || loadingChildren}
                     onClick={() => void saveSelectedAttendance(false)}
                   >
                     تسجيل غياب المحددين

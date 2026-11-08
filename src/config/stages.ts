@@ -30,5 +30,5 @@ export const STAGES: readonly Stage[] = [
   { id: "g5-g6", name: "خامسة وسادسة", order: 5, sheetsLinked: true },
   { id: "prep", name: "إعدادي", order: 6, sheetsLinked: true },
   { id: "secondary", name: "ثانوي", order: 7, sheetsLinked: true },
-  { id: "servants", name: "الخدام", order: 8, sheetsLinked: false },
+  { id: "servants", name: "الخدام", order: 8, sheetsLinked: true },
 ] as const;

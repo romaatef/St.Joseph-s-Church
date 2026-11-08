@@ -1,10 +1,21 @@
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
 import type { BirthdayEntry } from "@/lib/google-sheets/birthdays";
+import type { StageId } from "@/config/stages";
 import { normalizePhoneNumber } from "@/lib/utils";
-import { Cake, CalendarDays, PhoneCall } from "lucide-react";
+import { normalizeWhatsAppNumber } from "@/lib/whatsapp";
+import { Cake, CalendarDays, MessageCircle, PhoneCall } from "lucide-react";
 
+type StageBirthdayGroup = {
+  stageId: StageId;
+  stageName: string;
+  children: BirthdayEntry[];
+  whatsappNumbers: string[];
+};
 type BirthdayOverviewProps = {
   items: BirthdayEntry[];
+  birthdayStages: StageBirthdayGroup[];
+  isAdmin: boolean;
+  whatsappContactsError?: string;
   sourceRecordCount: number;
 };
 
@@ -25,7 +36,23 @@ function formatBirthdayLabel(value: string) {
   }).format(date);
 }
 
-export function BirthdayOverview({ items, sourceRecordCount }: BirthdayOverviewProps) {
+function createWhatsAppMessage(stage: StageBirthdayGroup) {
+  const children = stage.children.map((child, index) => {
+    const phone = child.phone
+      ? normalizeWhatsAppNumber(child.phone) ?? child.phone
+      : "الرقم غير مسجل";
+    return `${index + 1}. ${child.name} — ${phone}`;
+  });
+  return `صباح الخير ❤️\nأعياد ميلاد اليوم في مرحلة ${stage.stageName} 🎂\n\n${children.join("\n")}\nكل سنة وهم طيبين ❤️`;
+}
+
+export function BirthdayOverview({
+  items,
+  birthdayStages,
+  isAdmin,
+  whatsappContactsError,
+  sourceRecordCount,
+}: BirthdayOverviewProps) {
   const todayBirthdays = items.filter((item) => item.isToday).sort((a, b) => a.name.localeCompare(b.name));
   const allUpcomingBirthdays = items
     .filter((item) => !item.isToday)
@@ -71,28 +98,107 @@ export function BirthdayOverview({ items, sourceRecordCount }: BirthdayOverviewP
             </CardDescription>
           </div>
 
-          {todayBirthdays.length > 0 ? (
+          {birthdayStages.length > 0 ? (
             <div className="divide-y divide-border">
-              {todayBirthdays.map((item) => (
-                <div key={item.id} className="flex flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <p className="font-semibold">{item.name}</p>
-                    <p className="text-sm text-muted-foreground">{item.sectionName}</p>
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    <span>{formatBirthdayLabel(item.nextBirthday)}</span>
-                  </div>
-                  {item.phone ? (
-                    <a
-                      href={`tel:${normalizePhoneNumber(item.phone)}`}
-                      className="inline-flex items-center gap-2 text-sm font-medium text-primary-dark"
-                    >
-                      <PhoneCall className="size-4" aria-hidden />
-                      اتصال
-                    </a>
-                  ) : null}
-                </div>
-              ))}
+              {birthdayStages.map((stage) => {
+                const whatsappNumbers = stage.whatsappNumbers
+                  .map((phone) => normalizeWhatsAppNumber(phone))
+                  .filter((phone): phone is string => phone !== null);
+                const message = createWhatsAppMessage(stage);
+
+                return (
+                  <section key={stage.stageId} className="px-5 py-4">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-semibold">{stage.stageName}</h3>
+                          <span className="rounded-full bg-muted px-2 py-1 text-xs text-primary-dark">
+                            {stage.children.length}
+                          </span>
+                        </div>
+                        {stage.children.length === 0 ? (
+                          <p className="mt-1 text-sm text-muted-foreground">
+                            لا توجد أعياد ميلاد اليوم في هذه المرحلة.
+                          </p>
+                        ) : null}
+                      </div>
+                      {isAdmin ? (
+                        whatsappNumbers.length > 0 && stage.children.length > 0 ? (
+                          <div className="flex flex-wrap gap-2">
+                            {whatsappNumbers.map((whatsappNumber) => (
+                              <a
+                                key={whatsappNumber}
+                                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(event) => {
+                                  if (
+                                    !window.confirm(
+                                      `فتح واتساب لإرسال رسالة لمسؤول مرحلة ${stage.stageName} (${whatsappNumber}) عن ${stage.children.length} طفل؟`,
+                                    )
+                                  ) {
+                                    event.preventDefault();
+                                  }
+                                }}
+                                className="inline-flex h-9 items-center justify-center gap-2 rounded-xl bg-primary px-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-dark"
+                                aria-label={`إرسال أعياد ميلاد ${stage.stageName} إلى ${whatsappNumber} عبر واتساب`}
+                              >
+                                <MessageCircle className="size-4" aria-hidden />
+                                واتساب {whatsappNumber}
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            disabled
+                            className="inline-flex h-9 items-center justify-center gap-2 rounded-xl border border-border bg-muted px-3 text-sm font-medium text-muted-foreground disabled:cursor-not-allowed disabled:opacity-70"
+                          >
+                            <MessageCircle className="size-4" aria-hidden />
+                            إرسال واتساب
+                          </button>
+                        )
+                      ) : null}
+                    </div>
+                    {isAdmin && stage.children.length > 0 && whatsappNumbers.length === 0 ? (
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {whatsappContactsError ??
+                          "سجّل رقم واتساب مسؤول هذه المرحلة من الإعدادات لتفعيل الإرسال."}
+                      </p>
+                    ) : null}
+                    {stage.children.length > 0 ? (
+                      <div className="mt-3 divide-y divide-border">
+                        {stage.children.map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex flex-col gap-2 py-3 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
+                          >
+                            <div>
+                              <p className="font-medium">{item.name}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {item.sectionName} • {formatBirthdayLabel(item.nextBirthday)}
+                              </p>
+                            </div>
+                            {item.phone ? (
+                              <a
+                                href={`tel:${normalizePhoneNumber(item.phone)}`}
+                                className="inline-flex items-center gap-2 text-sm font-medium text-primary-dark"
+                              >
+                                <PhoneCall className="size-4" aria-hidden />
+                                اتصال
+                              </a>
+                            ) : (
+                              <span className="text-sm text-muted-foreground">
+                                رقم الهاتف غير مسجل
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </section>
+                );
+              })}
             </div>
           ) : (
             <div className="px-5 py-6 text-sm text-muted-foreground">لا توجد أعياد ميلاد اليوم.</div>

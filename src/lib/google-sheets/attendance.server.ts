@@ -217,6 +217,8 @@ function getAttendanceConfig(stageId: StageId) {
               ? process.env.PREP_ATTENDANCE_SCRIPT_URL
               : stageId === "secondary"
                 ? process.env.SECONDARY_ATTENDANCE_SCRIPT_URL
+                : stageId === "servants"
+                  ? process.env.SERVANTS_ATTENDANCE_SCRIPT_URL
                 : undefined
   )?.trim();
   const secret = process.env.ATTENDANCE_API_SECRET;
@@ -295,6 +297,14 @@ function parseResponse<T>(value: unknown): ScriptResponse<T> {
       );
     }
     if (
+      value.error === "Unsupported action" ||
+      value.error === "المرحلة غير مرتبطة بمصدر بيانات."
+    ) {
+      throw new Error(
+        "نسخة Apps Script المنشورة لا تتضمن إعدادات المرحلة أو الإجراء المطلوب. انشري الكود الحالي من apps-script/attendance.gs.",
+      );
+    }
+    if (
       typeof value.error === "string" &&
       value.error.startsWith("Could not identify one summary row for group:")
     ) {
@@ -307,6 +317,9 @@ function parseResponse<T>(value: unknown): ScriptResponse<T> {
     }
     if (typeof value.error === "string" && value.error.startsWith("Roster action: ")) {
       throw new Error(value.error.slice("Roster action: ".length));
+    }
+    if (typeof value.error === "string" && value.error.trim()) {
+      throw new Error(value.error);
     }
     throw new Error("رفض Apps Script الطلب أو أعاد استجابة غير صالحة.");
   }

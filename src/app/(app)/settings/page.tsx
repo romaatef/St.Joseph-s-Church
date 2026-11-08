@@ -3,6 +3,9 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { church } from "@/config/church";
 import { STAGES } from "@/config/stages";
 import { requireAuthenticated } from "@/lib/auth/guards";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { StageId } from "@/config/stages";
+import { StageWhatsAppSettings } from "@/components/settings/StageWhatsAppSettings";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,6 +14,32 @@ export const metadata: Metadata = {
 
 export default async function SettingsPage() {
   const profile = await requireAuthenticated();
+  let stageContacts: Partial<Record<StageId, string[]>> = {};
+  let stageContactsError: string | undefined;
+
+  if (profile.role === "admin") {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("stage_whatsapp_contacts")
+      .select("stage_id, whatsapp_phone");
+    if (error) {
+      console.error("Failed to load stage WhatsApp contacts:", error.code);
+      stageContactsError =
+        "تعذر تحميل أرقام المسؤولين. تحقق من تشغيل ترحيل قاعدة البيانات الخاص بأرقام واتساب المراحل.";
+    } else {
+      stageContacts = data.reduce<Partial<Record<StageId, string[]>>>(
+        (contacts, contact) => {
+          const stageId = contact.stage_id as StageId;
+          contacts[stageId] = [
+            ...(contacts[stageId] ?? []),
+            contact.whatsapp_phone,
+          ];
+          return contacts;
+        },
+        {},
+      );
+    }
+  }
 
   return (
     <>
@@ -20,6 +49,12 @@ export default async function SettingsPage() {
       />
 
       <div className="grid gap-4 md:grid-cols-2">
+        {profile.role === "admin" ? (
+          <StageWhatsAppSettings
+            contacts={stageContacts}
+            loadError={stageContactsError}
+          />
+        ) : null}
         <Card className="p-4">
           <CardTitle>بيانات الكنيسة</CardTitle>
           <CardDescription className="mt-3 space-y-2">

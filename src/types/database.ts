@@ -47,6 +47,24 @@ export type Database = {
         };
         Relationships: [];
       };
+      stage_whatsapp_contacts: {
+        Row: {
+          stage_id: StageId;
+          whatsapp_phone: string;
+          updated_at: string;
+        };
+        Insert: {
+          stage_id: StageId;
+          whatsapp_phone: string;
+          updated_at?: string;
+        };
+        Update: {
+          stage_id?: StageId;
+          whatsapp_phone?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {

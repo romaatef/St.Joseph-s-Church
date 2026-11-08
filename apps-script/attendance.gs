@@ -6,11 +6,45 @@ const STAGES = {
     dataSheetName: "Sheet1",
     attendanceSheetName: "Sheet1",
     groups: [
-      { id: "g1-g2-servants", name: "خدام", dataAliases: ["خدام"], dataRows: [5, 14], attendanceRows: [3, 11] },
-      { id: "g1-boys", name: "أولى بنين", dataAliases: ["أولى بنين", "أولى ولاد", "اولى بنين", "اولى ولاد"], attendanceAliases: ["اولي بنين"], dataRows: [16, 35], attendanceRows: [16, 35] },
-      { id: "g2-boys", name: "تانية بنين", dataAliases: ["تانية بنين", "تانية ولاد", "ثانية بنين", "ثانية ولاد"], attendanceAliases: ["تانيه بنين"], dataRows: [37, 61], attendanceRows: [39, 61] },
-      { id: "g1-girls", name: "أولى بنات", dataAliases: ["أولى بنات", "اولى بنات"], attendanceAliases: ["اولي بنات"], dataRows: [63, 91], attendanceRows: [65, 94] },
-      { id: "g2-girls", name: "تانية بنات", dataAliases: ["تانية بنات", "ثانية بنات"], attendanceAliases: ["تانيه بنات"], dataRows: [93, 121], attendanceRows: [98, 126] },
+      {
+        id: "g1-g2-servants",
+        name: "خدام",
+        dataAliases: ["خدام"],
+        dataRows: [5, 14],
+        attendanceRows: [3, 11],
+      },
+      {
+        id: "g1-boys",
+        name: "أولى بنين",
+        dataAliases: ["أولى بنين", "أولى ولاد", "اولى بنين", "اولى ولاد"],
+        attendanceAliases: ["اولي بنين"],
+        dataRows: [16, 35],
+        attendanceRows: [16, 35],
+      },
+      {
+        id: "g2-boys",
+        name: "تانية بنين",
+        dataAliases: ["تانية بنين", "تانية ولاد", "ثانية بنين", "ثانية ولاد"],
+        attendanceAliases: ["تانيه بنين"],
+        dataRows: [37, 61],
+        attendanceRows: [39, 61],
+      },
+      {
+        id: "g1-girls",
+        name: "أولى بنات",
+        dataAliases: ["أولى بنات", "اولى بنات"],
+        attendanceAliases: ["اولي بنات"],
+        dataRows: [63, 91],
+        attendanceRows: [65, 94],
+      },
+      {
+        id: "g2-girls",
+        name: "تانية بنات",
+        dataAliases: ["تانية بنات", "ثانية بنات"],
+        attendanceAliases: ["تانيه بنات"],
+        dataRows: [93, 121],
+        attendanceRows: [98, 126],
+      },
     ],
   },
   "g3-g4": {
@@ -21,11 +55,51 @@ const STAGES = {
     dataSheetName: "sheet 1",
     attendanceSheetName: "Sheet1",
     groups: [
-      { id: "g3-g4-servants", name: "خدام", dataAliases: ["خدام"], dataRows: [5, 21], attendanceRows: [3, 19] },
-      { id: "g3-boys", name: "تالتة بنين", dataAliases: ["تالتة بنين", "تالتة ولاد", "ثالثة بنين", "ثالثة ولاد", "تالته ولاد"], attendanceAliases: ["تالته بنين"], dataRows: [23, 43], attendanceRows: [23, 44] },
-      { id: "g4-boys", name: "رابعة بنين", dataAliases: ["رابعة بنين", "رابعة ولاد", "رابعه بنين", "رابعه ولاد"], attendanceAliases: ["رابعه بنين"], dataRows: [45, 75], attendanceRows: [48, 79] },
-      { id: "g3-girls", name: "تالتة بنات", dataAliases: ["تالتة بنات", "ثالثة بنات"], attendanceAliases: ["تالته بنات"], dataRows: [77, 98], attendanceRows: [83, 105] },
-      { id: "g4-girls", name: "رابعة بنات", dataAliases: ["رابعة بنات", "رابعه بنات"], attendanceAliases: ["رابعه بنات"], dataRows: [100, 128], attendanceRows: [109, 137] },
+      {
+        id: "g3-g4-servants",
+        name: "خدام",
+        dataAliases: ["خدام"],
+        dataRows: [5, 21],
+        attendanceRows: [3, 19],
+      },
+      {
+        id: "g3-boys",
+        name: "تالتة بنين",
+        dataAliases: [
+          "تالتة بنين",
+          "تالتة ولاد",
+          "ثالثة بنين",
+          "ثالثة ولاد",
+          "تالته ولاد",
+        ],
+        attendanceAliases: ["تالته بنين"],
+        dataRows: [23, 43],
+        attendanceRows: [23, 44],
+      },
+      {
+        id: "g4-boys",
+        name: "رابعة بنين",
+        dataAliases: ["رابعة بنين", "رابعة ولاد", "رابعه بنين", "رابعه ولاد"],
+        attendanceAliases: ["رابعه بنين"],
+        dataRows: [45, 75],
+        attendanceRows: [48, 79],
+      },
+      {
+        id: "g3-girls",
+        name: "تالتة بنات",
+        dataAliases: ["تالتة بنات", "ثالثة بنات"],
+        attendanceAliases: ["تالته بنات"],
+        dataRows: [77, 98],
+        attendanceRows: [83, 105],
+      },
+      {
+        id: "g4-girls",
+        name: "رابعة بنات",
+        dataAliases: ["رابعة بنات", "رابعه بنات"],
+        attendanceAliases: ["رابعه بنات"],
+        dataRows: [100, 128],
+        attendanceRows: [109, 137],
+      },
     ],
   },
   "g5-g6": {
@@ -34,57 +108,260 @@ const STAGES = {
     dataSpreadsheetId: "1FDO_WDPin3RWjvGDt4_awMEwMklSka8r",
     attendanceSpreadsheetId: "1xb7dc0jA8uMlgUDKDtsEIUWRyaYDx4KuAOdpxOIMfrA",
     groups: [
-      { id: "g5-g6-servants", name: "خدام", dataAliases: ["خدام"], dataRows: [5, 20], attendanceRows: [3, 18] },
-      { id: "g5-boys", name: "خامسة بنين", dataAliases: ["خامسة بنين", "خامسة ولاد", "خامسه ولاد"], dataRows: [22, 63], attendanceRows: [22, 64] },
-      { id: "g6-boys", name: "ستة بنين", dataAliases: ["ستة بنين", "ستة ولاد", "سته ولاد", "سادسة ولاد"], dataRows: [65, 94], attendanceRows: [68, 101] },
-      { id: "g5-girls", name: "خامسة بنات", dataAliases: ["خامسة بنات", "خامسه بنات"], dataRows: [96, 113], attendanceRows: [105, 122] },
-      { id: "g6-girls", name: "ستة بنات", dataAliases: ["ستة بنات", "سته بنات", "سادسة بنات", "سادسه بنات"], dataRows: [115, 138], attendanceRows: [126, 150] },
+      {
+        id: "g5-g6-servants",
+        name: "خدام",
+        dataAliases: ["خدام"],
+        dataRows: [5, 20],
+        attendanceRows: [3, 18],
+      },
+      {
+        id: "g5-boys",
+        name: "خامسة بنين",
+        dataAliases: ["خامسة بنين", "خامسة ولاد", "خامسه ولاد"],
+        dataRows: [22, 63],
+        attendanceRows: [22, 64],
+      },
+      {
+        id: "g6-boys",
+        name: "ستة بنين",
+        dataAliases: ["ستة بنين", "ستة ولاد", "سته ولاد", "سادسة ولاد"],
+        dataRows: [65, 94],
+        attendanceRows: [68, 101],
+      },
+      {
+        id: "g5-girls",
+        name: "خامسة بنات",
+        dataAliases: ["خامسة بنات", "خامسه بنات"],
+        dataRows: [96, 113],
+        attendanceRows: [105, 122],
+      },
+      {
+        id: "g6-girls",
+        name: "ستة بنات",
+        dataAliases: ["ستة بنات", "سته بنات", "سادسة بنات", "سادسه بنات"],
+        dataRows: [115, 138],
+        attendanceRows: [126, 150],
+      },
     ],
   },
-  "prep": {
+  prep: {
     enabled: true,
     name: "إعدادي",
     dataSpreadsheetId: "1J0voPh-JtSuk4itpAdbL3hvG-YjWY9hmKlyyB-fbltY",
     attendanceSpreadsheetId: "1vMV0Z_IMuta-8FiwOfr4dpnXWpCSFtdLMrI3d2-HUMs",
     groups: [
-      { id: "prep-servants", name: "خدام", dataAliases: ["خدام"], dataRows: [5, 25], attendanceRows: [3, 24] },
-      { id: "prep-g1-boys", name: "أولى إعدادي بنين", dataAliases: ["أولى إعدادي بنين", "اولى اعدادي بنين"], attendanceAliases: ["اولي اعدادي بنين"], dataRows: [27, 65], attendanceRows: [29, 65] },
-      { id: "prep-g2-boys", name: "تانية إعدادي بنين", dataAliases: ["تانية إعدادي بنين", "ثانية إعدادي بنين", "تانيه اعدادي بنين"], attendanceAliases: ["تانيه اعدادي بنين"], dataRows: [96, 137], attendanceRows: [70, 111] },
-      { id: "prep-g3-boys", name: "تالتة إعدادي بنين", dataAliases: ["تالتة إعدادي بنين", "ثالثة إعدادي بنين"], attendanceAliases: ["تالته اعدادي بنين"], dataRows: [175, 215], attendanceRows: [116, 156] },
-      { id: "prep-g1-girls", name: "أولى إعدادي بنات", dataAliases: ["أولى إعدادي بنات", "اولى اعدادي بنات"], attendanceAliases: ["اولي اعدادي بنات"], dataRows: [67, 94], attendanceRows: [161, 188] },
-      { id: "prep-g2-girls", name: "تانية إعدادي بنات", dataAliases: ["تانية إعدادي بنات", "ثانية إعدادي بنات", "تانيه اعدادي بنات"], attendanceAliases: ["تانيه اعدادي بنات"], dataRows: [139, 173], attendanceRows: [193, 228] },
-      { id: "prep-g3-girls", name: "تالتة إعدادي بنات", dataAliases: ["تالتة إعدادي بنات", "ثالثة إعدادي بنات"], attendanceAliases: ["تالته اعدادي بنات"], dataRows: [217, 265], attendanceRows: [233, 281] },
+      {
+        id: "prep-servants",
+        name: "خدام",
+        dataAliases: ["خدام"],
+        dataRows: [5, 25],
+        attendanceRows: [3, 24],
+      },
+      {
+        id: "prep-g1-boys",
+        name: "أولى إعدادي بنين",
+        dataAliases: ["أولى إعدادي بنين", "اولى اعدادي بنين"],
+        attendanceAliases: ["اولي اعدادي بنين"],
+        dataRows: [27, 65],
+        attendanceRows: [29, 65],
+      },
+      {
+        id: "prep-g2-boys",
+        name: "تانية إعدادي بنين",
+        dataAliases: [
+          "تانية إعدادي بنين",
+          "ثانية إعدادي بنين",
+          "تانيه اعدادي بنين",
+        ],
+        attendanceAliases: ["تانيه اعدادي بنين"],
+        dataRows: [96, 137],
+        attendanceRows: [70, 111],
+      },
+      {
+        id: "prep-g3-boys",
+        name: "تالتة إعدادي بنين",
+        dataAliases: ["تالتة إعدادي بنين", "ثالثة إعدادي بنين"],
+        attendanceAliases: ["تالته اعدادي بنين"],
+        dataRows: [175, 215],
+        attendanceRows: [116, 156],
+      },
+      {
+        id: "prep-g1-girls",
+        name: "أولى إعدادي بنات",
+        dataAliases: ["أولى إعدادي بنات", "اولى اعدادي بنات"],
+        attendanceAliases: ["اولي اعدادي بنات"],
+        dataRows: [67, 94],
+        attendanceRows: [161, 188],
+      },
+      {
+        id: "prep-g2-girls",
+        name: "تانية إعدادي بنات",
+        dataAliases: [
+          "تانية إعدادي بنات",
+          "ثانية إعدادي بنات",
+          "تانيه اعدادي بنات",
+        ],
+        attendanceAliases: ["تانيه اعدادي بنات"],
+        dataRows: [139, 173],
+        attendanceRows: [193, 228],
+      },
+      {
+        id: "prep-g3-girls",
+        name: "تالتة إعدادي بنات",
+        dataAliases: ["تالتة إعدادي بنات", "ثالثة إعدادي بنات"],
+        attendanceAliases: ["تالته اعدادي بنات"],
+        dataRows: [217, 265],
+        attendanceRows: [233, 281],
+      },
     ],
   },
-  "secondary": {
+  secondary: {
     enabled: true,
     name: "ثانوي",
     dataSpreadsheetId: "1Nv4Vj7zHA6AYeHDrHsR9JDzTvK2QAucyI_-oDnrBV84",
     attendanceSpreadsheetId: "1OYhfanV-LQO44Ph_Re6dNoJWSTh5ZEEVr8DpKOc9_EY",
     groups: [
-      { id: "secondary-servants", name: "خدام", dataAliases: ["خدام"], dataRows: [5, 22], attendanceRows: [3, 18] },
-      { id: "secondary-g1-boys", name: "أولى ثانوي بنين", dataAliases: ["أولى ثانوي بنين", "اولى ثانوي بنين", "أولى ثانوي ولاد", "اولى ثانوي ولاد"], attendanceAliases: ["اولي ثانوي بنين"], dataRows: [24, 49], attendanceRows: [23, 48] },
-      { id: "secondary-g2-boys", name: "تانية ثانوي بنين", dataAliases: ["تانية ثانوي بنين", "ثانية ثانوي بنين", "تانية ثانوي ولاد", "ثانية ثانوي ولاد"], attendanceAliases: ["تانيه ثانوي بنين"], dataRows: [81, 110], attendanceRows: [53, 82] },
-      { id: "secondary-g3-boys", name: "تالتة ثانوي بنين", dataAliases: ["تالتة ثانوي بنين", "ثالثة ثانوي بنين", "تالتة ثانوي ولاد", "ثالثة ثانوي ولاد"], attendanceAliases: ["تالته ثانوي بنين"], dataRows: [140, 170], attendanceRows: [87, 117] },
-      { id: "secondary-g1-girls", name: "أولى ثانوي بنات", dataAliases: ["أولى ثانوي بنات", "اولى ثانوي بنات"], attendanceAliases: ["اولي ثانوي بنات"], dataRows: [51, 79], attendanceRows: [122, 149] },
-      { id: "secondary-g2-girls", name: "تانية ثانوي بنات", dataAliases: ["تانية ثانوي بنات", "ثانية ثانوي بنات"], attendanceAliases: ["تانيه ثانوي بنات"], dataRows: [112, 138], attendanceRows: [154, 180] },
-      { id: "secondary-g3-girls", name: "تالتة ثانوي بنات", dataAliases: ["تالتة ثانوي بنات", "ثالثة ثانوي بنات"], attendanceAliases: ["تالته ثانوي بنات"], dataRows: [172, 200], attendanceRows: [185, 213] },
+      {
+        id: "secondary-servants",
+        name: "خدام",
+        dataAliases: ["خدام"],
+        dataRows: [5, 22],
+        attendanceRows: [3, 18],
+      },
+      {
+        id: "secondary-g1-boys",
+        name: "أولى ثانوي بنين",
+        dataAliases: [
+          "أولى ثانوي بنين",
+          "اولى ثانوي بنين",
+          "أولى ثانوي ولاد",
+          "اولى ثانوي ولاد",
+        ],
+        attendanceAliases: ["اولي ثانوي بنين"],
+        dataRows: [24, 49],
+        attendanceRows: [23, 48],
+      },
+      {
+        id: "secondary-g2-boys",
+        name: "تانية ثانوي بنين",
+        dataAliases: [
+          "تانية ثانوي بنين",
+          "ثانية ثانوي بنين",
+          "تانية ثانوي ولاد",
+          "ثانية ثانوي ولاد",
+        ],
+        attendanceAliases: ["تانيه ثانوي بنين"],
+        dataRows: [81, 110],
+        attendanceRows: [53, 82],
+      },
+      {
+        id: "secondary-g3-boys",
+        name: "تالتة ثانوي بنين",
+        dataAliases: [
+          "تالتة ثانوي بنين",
+          "ثالثة ثانوي بنين",
+          "تالتة ثانوي ولاد",
+          "ثالثة ثانوي ولاد",
+        ],
+        attendanceAliases: ["تالته ثانوي بنين"],
+        dataRows: [140, 170],
+        attendanceRows: [87, 117],
+      },
+      {
+        id: "secondary-g1-girls",
+        name: "أولى ثانوي بنات",
+        dataAliases: ["أولى ثانوي بنات", "اولى ثانوي بنات"],
+        attendanceAliases: ["اولي ثانوي بنات"],
+        dataRows: [51, 79],
+        attendanceRows: [122, 149],
+      },
+      {
+        id: "secondary-g2-girls",
+        name: "تانية ثانوي بنات",
+        dataAliases: ["تانية ثانوي بنات", "ثانية ثانوي بنات"],
+        attendanceAliases: ["تانيه ثانوي بنات"],
+        dataRows: [112, 138],
+        attendanceRows: [154, 180],
+      },
+      {
+        id: "secondary-g3-girls",
+        name: "تالتة ثانوي بنات",
+        dataAliases: ["تالتة ثانوي بنات", "ثالثة ثانوي بنات"],
+        attendanceAliases: ["تالته ثانوي بنات"],
+        dataRows: [172, 200],
+        attendanceRows: [185, 213],
+      },
     ],
   },
-  "servants": {
-    enabled: false,
+  servants: {
+    enabled: true,
     name: "الخدام",
-    dataSpreadsheetId: "155Eo2CCPy8nIF2u5cDAoDTdtk0OM4cJws8_wkVBJjAI",
-    attendanceSpreadsheetId: "12lsNHbeUtjkjtUUCF3ia0xydqHvcXXG3",
+    dataSpreadsheetId: "1Aohmvp5MYIpdaLA9K3eH15JbktbhCiiK",
+    attendanceSpreadsheetId: "155Eo2CCPy8nIF2u5cDAoDTdtk0OM4cJws8_wkVBJjAI",
+    dataSheetName: "sheet 1",
     groups: [
-      { id: "servants-had", name: "حضانة الحد", dataAliases: ["حضانة الحد"], attendanceAliases: ["حضانة"], attendanceRows: [3, 10] },
-      { id: "servants-kg", name: "كي جي", dataAliases: ["كي جي", "KG", "K.G"], attendanceAliases: ["كيجي"], attendanceRows: [15, 27] },
-      { id: "servants-g1-g2", name: "أولى وتانية", dataAliases: ["أولى وتانية", "اولى وتانية"], attendanceAliases: ["اولي وتانية"], attendanceRows: [32, 40] },
-      { id: "servants-g3-g4", name: "تالتة ورابعة", dataAliases: ["تالتة ورابعة", "ثالثة ورابعة"], attendanceRows: [45, 61] },
-      { id: "servants-g5-g6", name: "خامسة وسادسة", dataAliases: ["خامسة وسادسة", "خامسه وسادسه"], attendanceAliases: ["خامسة وستة"], attendanceRows: [66, 81] },
-      { id: "servants-prep", name: "إعدادي", dataAliases: ["إعدادي", "اعدادي"], attendanceAliases: ["اعدادي"], attendanceRows: [86, 107] },
-      { id: "servants-secondary", name: "ثانوي", dataAliases: ["ثانوي"], attendanceRows: [112, 128] },
-      { id: "servants-meeting", name: "خدام الاجتماع", dataAliases: ["خدام الاجتماع"], attendanceRows: [133, 142] },
+      {
+        id: "servants-had",
+        name: "حضانة الحد",
+        dataAliases: ["حضانة الحد", "حضانه الحد"],
+        dataRows: [16, 23],
+        attendanceAliases: ["حضانة"],
+        attendanceRows: [17, 26],
+      },
+      {
+        id: "servants-kg",
+        name: "كي جي",
+        dataAliases: ["كي جي", "KG", "K.G"],
+        dataRows: [25, 36],
+        attendanceAliases: ["كيجي"],
+        attendanceRows: [28, 43],
+      },
+      {
+        id: "servants-g1-g2",
+        name: "أولى وتانية",
+        dataAliases: ["أولى وتانية", "اولى وتانية", "اولي وتانيه"],
+        dataRows: [38, 47],
+        attendanceAliases: ["اولي وتانية"],
+        attendanceRows: [45, 58],
+      },
+      {
+        id: "servants-g3-g4",
+        name: "تالتة ورابعة",
+        dataAliases: ["تالتة ورابعة", "ثالثة ورابعة", "تالته ورابعه"],
+        dataRows: [49, 65],
+        attendanceRows: [60, 79],
+      },
+      {
+        id: "servants-g5-g6",
+        name: "خامسة وسادسة",
+        dataAliases: ["خامسة وسادسة", "خامسه وسادسه", "خامسه وستة"],
+        dataRows: [67, 82],
+        attendanceAliases: ["خامسة وستة"],
+        attendanceRows: [81, 99],
+      },
+      {
+        id: "servants-prep",
+        name: "إعدادي",
+        dataAliases: ["إعدادي", "اعدادي"],
+        dataRows: [84, 108],
+        attendanceAliases: ["اعدادي"],
+        attendanceRows: [101, 124],
+      },
+      {
+        id: "servants-secondary",
+        name: "ثانوي",
+        dataAliases: ["ثانوي"],
+        dataRows: [110, 127],
+        attendanceRows: [126, 145],
+      },
+      {
+        id: "servants-meeting",
+        name: "خدام الاجتماع",
+        dataAliases: ["خدام الاجتماع", "خدام"],
+        dataRows: [4, 14],
+        attendanceRows: [3, 15],
+      },
     ],
   },
 };
@@ -94,17 +371,19 @@ const DATA_ROW_OFFSETS_PROPERTY_PREFIX = "DATA_ROW_OFFSETS_";
 
 const PRESENT_MARK = "⛪";
 const NOT_ENROLLED_MARK = "لم يكن مسجلًا";
-const SUMMARY_LABEL_PATTERN = /^(?:ال)?(?:عدد|مجموع|إجمال[يى]|اجمال[يى])(?:\s*[:：]?\s*\d+)?$/u;
+const SUMMARY_LABEL_PATTERN =
+  /^(?:ال)?(?:عدد|مجموع|إجمال[يى]|اجمال[يى])(?:\s*[:：]?\s*\d+)?$/u;
 
 function doGet() {
-  return ContentService
-    .createTextOutput("Attendance API is ready")
-    .setMimeType(ContentService.MimeType.TEXT);
+  return ContentService.createTextOutput("Attendance API is ready").setMimeType(
+    ContentService.MimeType.TEXT,
+  );
 }
 
 function doPost(e) {
   try {
-    const secret = PropertiesService.getScriptProperties().getProperty("API_SECRET");
+    const secret =
+      PropertiesService.getScriptProperties().getProperty("API_SECRET");
     if (!secret || !e || !e.postData || !e.postData.contents) {
       return json({ success: false, error: "Unauthorized" });
     }
@@ -155,7 +434,9 @@ function doPost(e) {
           const stage = STAGES[stageId];
           if (!isStageLinked_(stage)) return [];
 
-          const spreadsheet = SpreadsheetApp.openById(stage.attendanceSpreadsheetId);
+          const spreadsheet = SpreadsheetApp.openById(
+            stage.attendanceSpreadsheetId,
+          );
           const sheet = findAttendanceSheet_(spreadsheet, stage.groups);
           return stage.groups.map((group) => ({
             id: group.id,
@@ -173,20 +454,29 @@ function doPost(e) {
           const stage = STAGES[stageId];
           if (!isStageLinked_(stage)) return [];
           try {
-            const spreadsheet = SpreadsheetApp.openById(stage.attendanceSpreadsheetId);
-            const diagnosis = diagnoseAttendanceSpreadsheet_(spreadsheet, stage.groups);
-            return [{
-              stageId,
-              reasons: diagnosis.reasons,
-              sheets: diagnosis.sheets,
-            }];
+            const spreadsheet = SpreadsheetApp.openById(
+              stage.attendanceSpreadsheetId,
+            );
+            const diagnosis = diagnoseAttendanceSpreadsheet_(
+              spreadsheet,
+              stage.groups,
+            );
+            return [
+              {
+                stageId,
+                reasons: diagnosis.reasons,
+                sheets: diagnosis.sheets,
+              },
+            ];
           } catch (error) {
             console.error("Attendance diagnostics failed", error);
-            return [{
-              stageId,
-              reasons: ["STALE_OR_UNEXPECTED_CONFIG"],
-              sheets: [],
-            }];
+            return [
+              {
+                stageId,
+                reasons: ["STALE_OR_UNEXPECTED_CONFIG"],
+                sheets: [],
+              },
+            ];
           }
         }),
       });
@@ -197,6 +487,13 @@ function doPost(e) {
       return json({
         success: true,
         groups: getStageChildrenRows_(stage),
+      });
+    }
+
+    if (data.action === "diagnoseServantsDataSheets") {
+      return json({
+        success: true,
+        ...diagnoseServantsDataSheets(),
       });
     }
 
@@ -239,7 +536,9 @@ function doPost(e) {
         !Array.isArray(data.groups) ||
         data.groups.length === 0 ||
         new Set(data.groups).size !== data.groups.length ||
-        data.groups.some((requestedGroup) => !isAttendanceGroup_(requestedGroup))
+        data.groups.some(
+          (requestedGroup) => !isAttendanceGroup_(requestedGroup),
+        )
       ) {
         throw new Error("Invalid attendance history groups");
       }
@@ -287,7 +586,9 @@ function doPost(e) {
       } catch (error) {
         return json({
           success: false,
-          error: "Roster action: " + (error && error.message ? error.message : "تعذرت الإضافة."),
+          error:
+            "Roster action: " +
+            (error && error.message ? error.message : "تعذرت الإضافة."),
         });
       }
     }
@@ -302,13 +603,20 @@ function doPost(e) {
         return withRosterLock_(function () {
           return json({
             success: true,
-            message: removePersonFromSheets_(spreadsheet, group, data.row, name),
+            message: removePersonFromSheets_(
+              spreadsheet,
+              group,
+              data.row,
+              name,
+            ),
           });
         });
       } catch (error) {
         return json({
           success: false,
-          error: "Roster action: " + (error && error.message ? error.message : "تعذر الحذف."),
+          error:
+            "Roster action: " +
+            (error && error.message ? error.message : "تعذر الحذف."),
         });
       }
     }
@@ -323,13 +631,20 @@ function doPost(e) {
         return withRosterLock_(function () {
           return json({
             success: true,
-            message: updatePersonInSheets_(spreadsheet, group, currentName, person),
+            message: updatePersonInSheets_(
+              spreadsheet,
+              group,
+              currentName,
+              person,
+            ),
           });
         });
       } catch (error) {
         return json({
           success: false,
-          error: "Roster action: " + (error && error.message ? error.message : "تعذر تحديث البيانات."),
+          error:
+            "Roster action: " +
+            (error && error.message ? error.message : "تعذر تحديث البيانات."),
         });
       }
     }
@@ -353,12 +668,15 @@ function doPost(e) {
       let updated = 0;
       children.forEach((child) => {
         const cell = sheet.getRange(child.row, dateColumn);
-        if (isNotRegisteredOnDate_(
-          group,
-          child.name,
-          data.date,
-          cell.getDisplayValue().trim(),
-        )) return;
+        if (
+          isNotRegisteredOnDate_(
+            group,
+            child.name,
+            data.date,
+            cell.getDisplayValue().trim(),
+          )
+        )
+          return;
         const nextValue = presentRows.has(child.row) ? PRESENT_MARK : "";
         if (cell.getDisplayValue().trim() !== nextValue) {
           cell.setValue(nextValue);
@@ -373,19 +691,28 @@ function doPost(e) {
     if (data.action === "saveChildAttendance") {
       const dates = getDates(sheet, spreadsheet.getSpreadsheetTimeZone());
       const dateColumn = findDateColumn(dates, data.date);
-      if (!Number.isInteger(data.row) || data.row < 2 || typeof data.present !== "boolean") {
+      if (
+        !Number.isInteger(data.row) ||
+        data.row < 2 ||
+        typeof data.present !== "boolean"
+      ) {
         throw new Error("Invalid child attendance");
       }
 
-      const child = getChildren(sheet, group).find((entry) => entry.row === data.row);
-      if (!child) throw new Error("Child row does not belong to the selected group");
+      const child = getChildren(sheet, group).find(
+        (entry) => entry.row === data.row,
+      );
+      if (!child)
+        throw new Error("Child row does not belong to the selected group");
       const cell = sheet.getRange(child.row, dateColumn);
-      if (isNotRegisteredOnDate_(
-        group,
-        child.name,
-        data.date,
-        cell.getDisplayValue().trim(),
-      )) {
+      if (
+        isNotRegisteredOnDate_(
+          group,
+          child.name,
+          data.date,
+          cell.getDisplayValue().trim(),
+        )
+      ) {
         throw new Error("الطفل غير مسجل في هذا التاريخ ولا يمكن تسجيل حضوره.");
       }
 
@@ -471,14 +798,16 @@ function getAllAttendanceGroups_() {
     const stage = STAGES[stageId];
     if (!isStageLinked_(stage)) return [];
 
-    return stage.groups.map((group) => Object.assign({}, group, {
-      stageId,
-      stageName: stage.name,
-      dataSpreadsheetId: stage.dataSpreadsheetId,
-      attendanceSpreadsheetId: stage.attendanceSpreadsheetId,
-      stageGroups: stage.groups,
-      groups: stage.groups,
-    }));
+    return stage.groups.map((group) =>
+      Object.assign({}, group, {
+        stageId,
+        stageName: stage.name,
+        dataSpreadsheetId: stage.dataSpreadsheetId,
+        attendanceSpreadsheetId: stage.attendanceSpreadsheetId,
+        stageGroups: stage.groups,
+        groups: stage.groups,
+      }),
+    );
   });
 }
 
@@ -487,8 +816,10 @@ function getAttendanceConfig_(groupId) {
 }
 
 function isAttendanceGroup_(groupId) {
-  return typeof groupId === "string" &&
-    getAllAttendanceGroups_().some((group) => group.id === groupId);
+  return (
+    typeof groupId === "string" &&
+    getAllAttendanceGroups_().some((group) => group.id === groupId)
+  );
 }
 
 function getAttendanceContext_(groupId) {
@@ -531,7 +862,9 @@ function validateStageGroups_(groups, stageId) {
   if (groups.some((group) => getGroupConfig_(group).stageId !== stageId)) {
     throw new Error("Attendance groups do not match the requested stage");
   }
-  if (groups.some((group) => !stage.groups.some((entry) => entry.id === group))) {
+  if (
+    groups.some((group) => !stage.groups.some((entry) => entry.id === group))
+  ) {
     throw new Error("Attendance groups do not belong to the requested stage");
   }
   return groups;
@@ -543,7 +876,9 @@ function getAttendanceHistories_(groupIds) {
     const config = getGroupConfig_(groupId);
     let context = contexts[config.stageId];
     if (!context) {
-      const spreadsheet = SpreadsheetApp.openById(config.attendanceSpreadsheetId);
+      const spreadsheet = SpreadsheetApp.openById(
+        config.attendanceSpreadsheetId,
+      );
       const sheet = findAttendanceSheet_(spreadsheet, config.stageGroups);
       context = {
         spreadsheet,
@@ -566,7 +901,12 @@ function getAttendanceHistoryWithContext_(groupId, context) {
   const firstColumn = dates[0].column;
   const lastColumn = dates[dates.length - 1].column;
   const values = sheet
-    .getRange(firstRow, firstColumn, lastRow - firstRow + 1, lastColumn - firstColumn + 1)
+    .getRange(
+      firstRow,
+      firstColumn,
+      lastRow - firstRow + 1,
+      lastColumn - firstColumn + 1,
+    )
     .getDisplayValues();
   const properties = PropertiesService.getScriptProperties();
   const parsedDates = dates.map((date) => ({
@@ -584,7 +924,8 @@ function getAttendanceHistoryWithContext_(groupId, context) {
       const enrollmentDate = enrolledOn ? parseSheetDate_(enrolledOn) : null;
       const attendance = {};
       parsedDates.forEach((date) => {
-        const value = values[child.row - firstRow][date.column - firstColumn].trim();
+        const value =
+          values[child.row - firstRow][date.column - firstColumn].trim();
         const beforeEnrollment =
           enrollmentDate &&
           date.parsed &&
@@ -609,15 +950,16 @@ function findAttendanceSheet_(spreadsheet, requiredGroups) {
     if (namedSheet) sheets = [namedSheet];
   }
   const timezone = spreadsheet.getSpreadsheetTimeZone();
-  const candidates = sheets.filter((sheet) =>
-    hasFridayDateHeader_(sheet, timezone) &&
-    requiredGroups.every((group) => {
-      try {
-        return getGroupBounds_(sheet, group.id).children.length > 0;
-      } catch {
-        return false;
-      }
-    }),
+  const candidates = sheets.filter(
+    (sheet) =>
+      hasFridayDateHeader_(sheet, timezone) &&
+      requiredGroups.every((group) => {
+        try {
+          return getGroupBounds_(sheet, group.id).children.length > 0;
+        } catch {
+          return false;
+        }
+      }),
   );
 
   if (candidates.length !== 1) {
@@ -649,7 +991,9 @@ function validateAttendanceRowRanges_(groups) {
     .sort((left, right) => left.startRow - right.startRow);
   for (let index = 1; index < ordered.length; index += 1) {
     if (ordered[index].startRow <= ordered[index - 1].endRow) {
-      throw new Error("Attendance row configuration contains overlapping ranges.");
+      throw new Error(
+        "Attendance row configuration contains overlapping ranges.",
+      );
     }
   }
 }
@@ -668,7 +1012,11 @@ function diagnoseAttendanceSpreadsheet_(spreadsheet, requiredGroups) {
   const sheetResults = sheets.map((sheet, index) => {
     const dateHeader = getFridayDateHeaderDiagnostics_(sheet, timezone);
     if (dateHeader.headerRow === null) {
-      return { sheetIndex: index + 1, reasons: ["NO_FRIDAY_DATES"], dateHeader };
+      return {
+        sheetIndex: index + 1,
+        reasons: ["NO_FRIDAY_DATES"],
+        dateHeader,
+      };
     }
 
     const reasons = new Set();
@@ -683,16 +1031,17 @@ function diagnoseAttendanceSpreadsheet_(spreadsheet, requiredGroups) {
     };
   });
 
-  const matchingCount = sheetResults.filter((sheet) =>
-    sheet.reasons.length === 1 && sheet.reasons[0] === "MATCH",
+  const matchingCount = sheetResults.filter(
+    (sheet) => sheet.reasons.length === 1 && sheet.reasons[0] === "MATCH",
   ).length;
-  const reasons = matchingCount > 1
-    ? ["MULTIPLE_MATCHES"]
-    : matchingCount === 1
-      ? ["MATCH"]
-      : sheets.length === 0
-        ? ["STALE_OR_UNEXPECTED_CONFIG"]
-        : [...new Set(sheetResults.flatMap((sheet) => sheet.reasons))];
+  const reasons =
+    matchingCount > 1
+      ? ["MULTIPLE_MATCHES"]
+      : matchingCount === 1
+        ? ["MATCH"]
+        : sheets.length === 0
+          ? ["STALE_OR_UNEXPECTED_CONFIG"]
+          : [...new Set(sheetResults.flatMap((sheet) => sheet.reasons))];
 
   return { reasons, sheets: sheetResults };
 }
@@ -748,7 +1097,9 @@ function getGroupBounds_(sheet, groupId) {
     }
   });
   if (children.length === 0) {
-    throw new Error("No attendance children were found in the configured row range.");
+    throw new Error(
+      "No attendance children were found in the configured row range.",
+    );
   }
   return {
     headerRow: configuredRows.startRow - 1,
@@ -774,12 +1125,17 @@ function getConfiguredAttendanceRows_(group) {
     stage.groups.map((entry) => [entry.id, entry.attendanceRows]),
   );
   const propertyKey = ATTENDANCE_ROW_OFFSETS_PROPERTY_PREFIX + group.stageId;
-  const stored = PropertiesService.getScriptProperties().getProperty(propertyKey);
+  const stored =
+    PropertiesService.getScriptProperties().getProperty(propertyKey);
   let offsets = {};
   if (stored) {
     try {
       const parsed = JSON.parse(stored);
-      if (parsed.signature === rangeSignature && parsed.offsets && typeof parsed.offsets === "object") {
+      if (
+        parsed.signature === rangeSignature &&
+        parsed.offsets &&
+        typeof parsed.offsets === "object"
+      ) {
         offsets = parsed.offsets;
       }
     } catch {
@@ -805,7 +1161,10 @@ function getAttendanceSummaryRow_(sheet, group, stageGroups) {
   const bounds = getConfiguredAttendanceRows_(group);
   const nextGroupStart = stageGroups
     .filter((entry) => entry.id !== group.id)
-    .map((entry) => getConfiguredAttendanceRows_(getGroupConfig_(entry.id)).startRow)
+    .map(
+      (entry) =>
+        getConfiguredAttendanceRows_(getGroupConfig_(entry.id)).startRow,
+    )
     .filter((row) => row > bounds.endRow)
     .reduce((next, row) => Math.min(next, row), sheet.getLastRow() + 1);
   if (nextGroupStart <= bounds.endRow + 1) return null;
@@ -910,7 +1269,8 @@ function getConfiguredDataRows_(stage, group) {
   const stageId = Object.keys(STAGES).find((id) => STAGES[id] === stage);
   if (!stageId) throw new Error("Data stage configuration is invalid.");
   const propertyKey = DATA_ROW_OFFSETS_PROPERTY_PREFIX + stageId;
-  const stored = PropertiesService.getScriptProperties().getProperty(propertyKey);
+  const stored =
+    PropertiesService.getScriptProperties().getProperty(propertyKey);
   let offsets = {};
   if (stored) {
     try {
@@ -991,13 +1351,22 @@ function getStageChildrenRows_(stage) {
     ? spreadsheet.getSheetByName(stage.dataSheetName)
     : null;
   if (!sheet) {
-    const matchingSheets = spreadsheet
-      .getSheets()
-      .filter((candidate) => hasConfiguredDataRowsForStage_(candidate, stage));
+    const sheets = spreadsheet.getSheets();
+    const matchingSheets = sheets.filter((candidate) =>
+      hasConfiguredDataRowsForStage_(candidate, stage),
+    );
     if (matchingSheets.length !== 1) {
-      throw new Error("تعذر تحديد تبويب بيانات فريد يطابق نطاقات المرحلة.");
+      const [onlySheet] = sheets;
+      if (
+        sheets.length !== 1 ||
+        !hasConfiguredDataRangesForStage_(onlySheet, stage)
+      ) {
+        throw new Error("تعذر تحديد تبويب بيانات فريد يطابق نطاقات المرحلة.");
+      }
+      sheet = onlySheet;
+    } else {
+      [sheet] = matchingSheets;
     }
-    [sheet] = matchingSheets;
   }
 
   const lastRow = sheet.getLastRow();
@@ -1021,9 +1390,7 @@ function getStageChildrenRows_(stage) {
     throw new Error("تبويب بيانات المرحلة لا يحتوي على الأعمدة المطلوبة.");
   }
 
-  const values = sheet
-    .getRange(1, 1, lastConfiguredRow, 10)
-    .getDisplayValues();
+  const values = sheet.getRange(1, 1, lastConfiguredRow, 10).getDisplayValues();
   return stage.groups.map((group) => {
     const [firstRow, endRow] = getConfiguredDataRows_(stage, group).rows;
     const rows = [];
@@ -1037,21 +1404,23 @@ function getStageChildrenRows_(stage) {
 }
 
 function hasConfiguredDataRowsForStage_(sheet, stage) {
-  if (sheet.getMaxColumns() < 10) return false;
+  if (!hasConfiguredDataRangesForStage_(sheet, stage)) return false;
   const lastRow = sheet.getLastRow();
-  if (!stage.groups.every((group) =>
-    (() => {
-      const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
-      return startRow >= 2 && endRow >= startRow && endRow <= lastRow;
-    })()
-  )) return false;
-
   const values = sheet.getRange(1, 1, lastRow, 10).getDisplayValues();
   return stage.groups.every((group) => {
     const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
     return values
       .slice(startRow - 1, endRow)
       .some((row) => isChildName_(row[1]));
+  });
+}
+
+function hasConfiguredDataRangesForStage_(sheet, stage) {
+  if (sheet.getMaxColumns() < 10) return false;
+  const lastRow = sheet.getLastRow();
+  return stage.groups.every((group) => {
+    const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
+    return startRow >= 2 && endRow >= startRow && endRow <= lastRow;
   });
 }
 
@@ -1066,16 +1435,100 @@ function normalizeSectionHeading_(value) {
 }
 
 function isDataSectionSeparator_(row) {
-  return normalizeSectionHeading_(row[0]) &&
-    row.slice(1, 10).every((cell) => !normalizeText(cell));
+  return (
+    normalizeSectionHeading_(row[0]) &&
+    row.slice(1, 10).every((cell) => !normalizeText(cell))
+  );
 }
 
 function isDataSectionHeading_(value) {
   return getAllAttendanceGroups_().some((group) =>
     group.dataAliases.some(
-      (alias) => normalizeSectionHeading_(alias) === normalizeSectionHeading_(value),
+      (alias) =>
+        normalizeSectionHeading_(alias) === normalizeSectionHeading_(value),
     ),
   );
+}
+
+function diagnoseServantsDataSheets() {
+  const stage = STAGES.servants;
+  const targetGroup = stage.groups.find((group) => group.id === "servants-had");
+  if (!targetGroup) throw new Error("حضانة الحد غير موجودة في إعدادات مرحلة الخدام.");
+
+  const spreadsheet = SpreadsheetApp.openById(stage.dataSpreadsheetId);
+  const stageAliases = stage.groups
+    .flatMap((group) => group.dataAliases)
+    .map(normalizeSectionHeading_);
+  const targetAliases = targetGroup.dataAliases.map(normalizeSectionHeading_);
+  const tabs = spreadsheet.getSheets().map((sheet) => {
+    const lastRow = sheet.getLastRow();
+    const lastColumn = sheet.getLastColumn();
+    const configuredRanges = stage.groups.map((group) => {
+      const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
+      const rangeFits =
+        startRow >= 2 &&
+        endRow >= startRow &&
+        endRow <= lastRow &&
+        sheet.getMaxColumns() >= 10;
+      const nonemptyNameRows = rangeFits
+        ? sheet
+            .getRange(startRow, 2, endRow - startRow + 1, 1)
+            .getDisplayValues()
+            .filter(([value]) => isChildName_(value)).length
+        : 0;
+      return {
+        group: group.id,
+        startRow,
+        endRow,
+        rangeFits,
+        nonemptyNameRows,
+      };
+    });
+    if (lastRow < 2 || lastColumn < 2 || sheet.getMaxColumns() < 10) {
+      return {
+        name: sheet.getName(),
+        lastRow,
+        lastColumn,
+        firstHeaderRow: null,
+        stageSectionRows: [],
+        targetSectionRows: [],
+        configuredRanges,
+      };
+    }
+
+    const values = sheet.getRange(1, 1, lastRow, 10).getDisplayValues();
+    const headerIndex = values.findIndex(isDataHeader_);
+    const stageSectionRows = [];
+    const targetSectionRows = [];
+    if (headerIndex >= 0) {
+      values.forEach((row, index) => {
+        if (index <= headerIndex || !isDataSectionSeparator_(row)) return;
+        const heading = normalizeSectionHeading_(row[0]);
+        if (!stageAliases.includes(heading)) return;
+        stageSectionRows.push(index + 1);
+        if (targetAliases.includes(heading)) targetSectionRows.push(index + 1);
+      });
+    }
+
+    return {
+      name: sheet.getName(),
+      lastRow,
+      lastColumn,
+      firstHeaderRow: headerIndex < 0 ? null : headerIndex + 1,
+      stageSectionRows,
+      targetSectionRows,
+      configuredRanges,
+    };
+  });
+  const result = {
+    configuredTabName: stage.dataSheetName,
+    configuredTabFound: Boolean(
+      stage.dataSheetName && spreadsheet.getSheetByName(stage.dataSheetName),
+    ),
+    tabs,
+  };
+  console.log(JSON.stringify(result));
+  return result;
 }
 
 function getDataSection_(spreadsheet, group) {
@@ -1087,15 +1540,35 @@ function getDataSection_(spreadsheet, group) {
     const namedSheet = spreadsheet.getSheetByName(stage.dataSheetName);
     if (namedSheet) {
       sheets = [namedSheet];
-    } else {
-      const matchingSheets = sheets.filter((sheet) => hasConfiguredDataRows_(sheet, stage));
+    } else if (stage.groups.every((entry) => Array.isArray(entry.dataRows))) {
+      const matchingSheets = sheets.filter((sheet) =>
+        hasConfiguredDataRows_(sheet, stage),
+      );
       if (matchingSheets.length !== 1) {
-        throw new Error("تعذر تحديد تبويب بيانات فريد يطابق نطاقات المرحلة.");
+        const [onlySheet] = sheets;
+        const hasConfiguredRanges =
+          sheets.length === 1 &&
+          onlySheet.getMaxColumns() >= 10 &&
+          stage.groups.every((group) => {
+            const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
+            return (
+              startRow >= 2 &&
+              endRow >= startRow &&
+              endRow <= onlySheet.getLastRow()
+            );
+          });
+        if (!hasConfiguredRanges) {
+          throw new Error("تعذر تحديد تبويب بيانات فريد يطابق نطاقات المرحلة.");
+        }
+        sheets = [onlySheet];
+      } else {
+        sheets = matchingSheets;
       }
-      sheets = matchingSheets;
     }
   } else if (stage.groups.every((entry) => Array.isArray(entry.dataRows))) {
-    const matchingSheets = sheets.filter((sheet) => hasConfiguredDataRows_(sheet, stage));
+    const matchingSheets = sheets.filter((sheet) =>
+      hasConfiguredDataRows_(sheet, stage),
+    );
     if (matchingSheets.length !== 1) {
       throw new Error("تعذر تحديد تبويب بيانات فريد يطابق نطاقات المرحلة.");
     }
@@ -1111,7 +1584,9 @@ function getDataSection_(spreadsheet, group) {
     if (lastRow > sheet.getLastRow() || sheet.getMaxColumns() < 10) {
       throw new Error("نطاق صفوف بيانات المجموعة خارج حدود التبويب.");
     }
-    const values = sheet.getRange(1, 1, sheet.getLastRow(), 10).getDisplayValues();
+    const values = sheet
+      .getRange(1, 1, sheet.getLastRow(), 10)
+      .getDisplayValues();
     const formulas = sheet.getRange(1, 1, sheet.getLastRow(), 10).getFormulas();
     return {
       sheet,
@@ -1128,10 +1603,13 @@ function getDataSection_(spreadsheet, group) {
   function hasConfiguredDataRows_(sheet, stage) {
     if (sheet.getMaxColumns() < 10) return false;
     const lastRow = sheet.getLastRow();
-    if (!stage.groups.every((group) => {
-      const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
-      return startRow >= 2 && endRow >= startRow && endRow <= lastRow;
-    })) return false;
+    if (
+      !stage.groups.every((group) => {
+        const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
+        return startRow >= 2 && endRow >= startRow && endRow <= lastRow;
+      })
+    )
+      return false;
 
     return stage.groups.every((group) => {
       const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
@@ -1145,41 +1623,62 @@ function getDataSection_(spreadsheet, group) {
     const lastRow = sheet.getLastRow();
     if (lastRow < 2 || sheet.getLastColumn() < 2) return;
     if (sheet.getMaxColumns() < 10) return;
+    const isConfiguredDataSheet =
+      Boolean(stage.dataSheetName) && sheet.getName() === stage.dataSheetName;
     const values = sheet.getRange(1, 1, lastRow, 10).getDisplayValues();
     const formulas = sheet.getRange(1, 1, lastRow, 10).getFormulas();
     const headerIndex = values.findIndex(isDataHeader_);
-    if (headerIndex < 0) return;
+    if (headerIndex < 0 && !isConfiguredDataSheet) return;
 
     const stageAliases = config.stageGroups
       .flatMap((entry) => entry.dataAliases)
       .map(normalizeSectionHeading_);
     const headings = [];
     values.forEach((row, index) => {
+      const heading = normalizeSectionHeading_(row[0]);
       if (
-        index > headerIndex &&
-        isDataSectionSeparator_(row) &&
-        stageAliases.includes(normalizeSectionHeading_(row[0]))
+        index > Math.max(headerIndex, 0) &&
+        stageAliases.includes(heading) &&
+        (isConfiguredDataSheet || isDataSectionSeparator_(row))
       ) {
-        headings.push({ row: index + 1, name: normalizeSectionHeading_(row[0]) });
+        headings.push({
+          row: index + 1,
+          name: heading,
+        });
       }
     });
     const aliases = getDataSectionAliases_(group).map(normalizeSectionHeading_);
-    const matches = headings.filter((heading) => aliases.includes(heading.name));
+    const matches = headings.filter((heading) =>
+      aliases.includes(heading.name),
+    );
     if (matches.length === 1) {
-      candidates.push({ sheet, values, formulas, headings, marker: matches[0], headerRow: headerIndex + 1 });
+      candidates.push({
+        sheet,
+        values,
+        formulas,
+        headings,
+        marker: matches[0],
+        headerRow: headerIndex < 0 ? null : headerIndex + 1,
+      });
     }
   });
 
   if (candidates.length !== 1) {
     throw new Error(
       candidates.length === 0
-        ? "لم يتم العثور على تبويب بيانات فريد يطابق عناوين الأعمدة وقسم " + config.name + "."
-        : "يوجد أكثر من تبويب بيانات مطابق لقسم " + config.name + "؛ لم يتم اختيار تبويب.",
+        ? "لم يتم العثور على تبويب بيانات فريد يطابق عناوين الأعمدة وقسم " +
+            config.name +
+            "."
+        : "يوجد أكثر من تبويب بيانات مطابق لقسم " +
+            config.name +
+            "؛ لم يتم اختيار تبويب.",
     );
   }
 
   const candidate = candidates[0];
-  const nextHeading = candidate.headings.find((heading) => heading.row > candidate.marker.row);
+  const nextHeading = candidate.headings.find(
+    (heading) => heading.row > candidate.marker.row,
+  );
   return {
     sheet: candidate.sheet,
     values: candidate.values,
@@ -1195,7 +1694,8 @@ function isDataHeader_(row) {
   const cells = row.map((value) => normalizeText(value).replace(/\s+/g, ""));
   const startsWith = (index, prefixes) =>
     prefixes.some((prefix) => cells[index].startsWith(prefix));
-  return startsWith(0, ["الرقم", "رقم"]) &&
+  return (
+    startsWith(0, ["الرقم", "رقم"]) &&
     startsWith(1, ["الأسم", "الاسم", "اسم"]) &&
     startsWith(2, ["رقمالتليفون", "رقمالهاتف", "رقمالموبايل"]) &&
     startsWith(3, ["رقمالبيت", "رقمالمنزل"]) &&
@@ -1204,7 +1704,8 @@ function isDataHeader_(row) {
     startsWith(6, ["تاريخالميلاد"]) &&
     startsWith(7, ["ابالاعتراف", "أبالاعتراف"]) &&
     startsWith(8, ["الموقعالجغرافي", "الموقع"]) &&
-    startsWith(9, ["ملاحظات"]);
+    startsWith(9, ["ملاحظات"])
+  );
 }
 
 function findAvailableAttendanceRow_(sheet, group) {
@@ -1234,23 +1735,33 @@ function findAvailableAttendanceRow_(sheet, group) {
     insertedRow = bounds.endRow + 1;
     sheet.insertRowsBefore(insertedRow, 1);
     inserted = true;
-    sheet.getRange(insertedRow - 1, 1, 1, lastColumn).copyTo(
-      sheet.getRange(insertedRow, 1, 1, lastColumn),
-      SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
-      false,
-    );
+    sheet
+      .getRange(insertedRow - 1, 1, 1, lastColumn)
+      .copyTo(
+        sheet.getRange(insertedRow, 1, 1, lastColumn),
+        SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
+        false,
+      );
     return {
       row: insertedRow,
       inserted: true,
-      rowOffsetUpdate: buildAttendanceRowOffsetUpdate_(groupConfig, insertedRow),
+      rowOffsetUpdate: buildAttendanceRowOffsetUpdate_(
+        groupConfig,
+        insertedRow,
+      ),
     };
   } catch (error) {
     if (inserted) {
       try {
         sheet.deleteRow(insertedRow);
       } catch (rollbackError) {
-        console.error("Attendance row expansion rollback failed", rollbackError);
-        throw new Error("تعذر توسيع مجموعة الغياب واسترجاع الشيت؛ راجعي الشيت قبل إعادة المحاولة.");
+        console.error(
+          "Attendance row expansion rollback failed",
+          rollbackError,
+        );
+        throw new Error(
+          "تعذر توسيع مجموعة الغياب واسترجاع الشيت؛ راجعي الشيت قبل إعادة المحاولة.",
+        );
       }
     }
     throw error;
@@ -1262,7 +1773,9 @@ function getEnrollmentDatePropertyKey_(group, name) {
     Utilities.DigestAlgorithm.SHA_256,
     group + "\n" + normalizeText(name),
   );
-  return ENROLLMENT_DATES_PROPERTY_PREFIX + Utilities.base64EncodeWebSafe(digest);
+  return (
+    ENROLLMENT_DATES_PROPERTY_PREFIX + Utilities.base64EncodeWebSafe(digest)
+  );
 }
 
 function isNotRegisteredOnDate_(group, name, date, cellValue) {
@@ -1273,7 +1786,9 @@ function isNotRegisteredOnDate_(group, name, date, cellValue) {
   if (!enrolledOn) return false;
   const attendanceDate = parseSheetDate_(date);
   const enrollmentDate = parseSheetDate_(enrolledOn);
-  return Boolean(attendanceDate && enrollmentDate && attendanceDate < enrollmentDate);
+  return Boolean(
+    attendanceDate && enrollmentDate && attendanceDate < enrollmentDate,
+  );
 }
 
 function findDataPersonRows_(section, name) {
@@ -1302,7 +1817,11 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
     config.attendanceSheetName,
   );
   const existingChildren = getChildren(attendanceSheet, group);
-  if (existingChildren.some((child) => normalizeText(child.name) === normalizeText(person.name))) {
+  if (
+    existingChildren.some(
+      (child) => normalizeText(child.name) === normalizeText(person.name),
+    )
+  ) {
     throw new Error("يوجد شخص بهذا الاسم بالفعل في مجموعة الغياب.");
   }
   const section = getDataSection_(getDataSpreadsheet_(group), group);
@@ -1318,7 +1837,9 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
   const dataSheet = section.sheet;
   for (let row = section.firstRow; row <= section.lastRow; row += 1) {
     if (
-      section.values[row - 1].slice(0, 10).every((cell) => !normalizeText(cell)) &&
+      section.values[row - 1]
+        .slice(0, 10)
+        .every((cell) => !normalizeText(cell)) &&
       section.formulas[row - 1].slice(0, 10).every((formula) => !formula)
     ) {
       dataRow = row;
@@ -1329,7 +1850,11 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
   if (!dataRow) {
     if (section.fixedRows) {
       insertAtRow = section.lastRow + 1;
-      dataRowOffsetUpdate = buildDataRowOffsetUpdate_(stage, config, insertAtRow);
+      dataRowOffsetUpdate = buildDataRowOffsetUpdate_(
+        stage,
+        config,
+        insertAtRow,
+      );
     } else if (section.nextHeadingRow) {
       insertAtRow = section.nextHeadingRow;
     } else {
@@ -1337,7 +1862,10 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
     }
   }
 
-  const attendanceReservation = findAvailableAttendanceRow_(attendanceSheet, group);
+  const attendanceReservation = findAvailableAttendanceRow_(
+    attendanceSheet,
+    group,
+  );
   const attendanceRow = attendanceReservation.row;
   const attendanceRange = attendanceSheet.getRange(
     attendanceRow,
@@ -1345,7 +1873,10 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
     1,
     Math.max(attendanceSheet.getLastColumn(), 1),
   );
-  const enrollmentPropertyKey = getEnrollmentDatePropertyKey_(group, person.name);
+  const enrollmentPropertyKey = getEnrollmentDatePropertyKey_(
+    group,
+    person.name,
+  );
   const properties = PropertiesService.getScriptProperties();
   const previousEnrollmentDate = properties.getProperty(enrollmentPropertyKey);
   const previousDataRowOffsets = dataRowOffsetUpdate
@@ -1368,29 +1899,37 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
       insertedDataRow = true;
       const sourceRow = dataRow - 1;
       if (sourceRow >= section.firstRow) {
-        dataSheet.getRange(sourceRow, 1, 1, 10).copyTo(
-          dataSheet.getRange(dataRow, 1, 1, 10),
-          SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
-          false,
-        );
+        dataSheet
+          .getRange(sourceRow, 1, 1, 10)
+          .copyTo(
+            dataSheet.getRange(dataRow, 1, 1, 10),
+            SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
+            false,
+          );
       }
     }
     dataRange = dataSheet.getRange(dataRow, 1, 1, 10);
     const nextNumber = getNextDataNumber_(section);
-    const enrolledOn = Utilities.formatDate(new Date(), "Africa/Cairo", "d/M/yyyy");
+    const enrolledOn = Utilities.formatDate(
+      new Date(),
+      "Africa/Cairo",
+      "d/M/yyyy",
+    );
     attendanceRange.getCell(1, 1).setValue(person.name);
-    dataRange.setValues([[
-      String(nextNumber),
-      person.name,
-      person.phone,
-      person.homeNumber,
-      person.street,
-      person.area,
-      person.birthDate,
-      person.confessionFather,
-      person.location,
-      person.notes,
-    ]]);
+    dataRange.setValues([
+      [
+        String(nextNumber),
+        person.name,
+        person.phone,
+        person.homeNumber,
+        person.street,
+        person.area,
+        person.birthDate,
+        person.confessionFather,
+        person.location,
+        person.notes,
+      ],
+    ]);
     SpreadsheetApp.flush();
     enrollmentDateUpdated = true;
     properties.setProperty(enrollmentPropertyKey, enrolledOn);
@@ -1402,7 +1941,10 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
       rowOffsetsUpdated = true;
     }
     if (dataRowOffsetUpdate) {
-      properties.setProperty(dataRowOffsetUpdate.propertyKey, dataRowOffsetUpdate.value);
+      properties.setProperty(
+        dataRowOffsetUpdate.propertyKey,
+        dataRowOffsetUpdate.value,
+      );
       dataRowOffsetsUpdated = true;
     }
     return "تمت إضافة الشخص إلى شيت الغياب وشيت البيانات.";
@@ -1410,7 +1952,10 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
     try {
       if (dataRowOffsetsUpdated && dataRowOffsetUpdate) {
         if (previousDataRowOffsets) {
-          properties.setProperty(dataRowOffsetUpdate.propertyKey, previousDataRowOffsets);
+          properties.setProperty(
+            dataRowOffsetUpdate.propertyKey,
+            previousDataRowOffsets,
+          );
         } else {
           properties.deleteProperty(dataRowOffsetUpdate.propertyKey);
         }
@@ -1422,7 +1967,9 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
             previousRowOffsets,
           );
         } else {
-          properties.deleteProperty(attendanceReservation.rowOffsetUpdate.propertyKey);
+          properties.deleteProperty(
+            attendanceReservation.rowOffsetUpdate.propertyKey,
+          );
         }
       }
       if (enrollmentDateUpdated) {
@@ -1442,7 +1989,9 @@ function addPersonToSheets_(attendanceSpreadsheet, group, person) {
       SpreadsheetApp.flush();
     } catch (rollbackError) {
       console.error("Roster add rollback failed", rollbackError);
-      throw new Error("فشلت الإضافة ولم يكتمل التراجع عنها؛ راجعي الشيتين قبل إعادة المحاولة.");
+      throw new Error(
+        "فشلت الإضافة ولم يكتمل التراجع عنها؛ راجعي الشيتين قبل إعادة المحاولة.",
+      );
     }
     throw error;
   }
@@ -1466,7 +2015,9 @@ function removePersonFromSheets_(attendanceSpreadsheet, group, row, name) {
     config.groups,
     config.attendanceSheetName,
   );
-  const child = getChildren(attendanceSheet, group).find((entry) => entry.row === row);
+  const child = getChildren(attendanceSheet, group).find(
+    (entry) => entry.row === row,
+  );
   if (!child || normalizeText(child.name) !== normalizeText(name)) {
     throw new Error("تغيرت قائمة المجموعة. حدّثي الصفحة وحاولي مرة أخرى.");
   }
@@ -1511,13 +2062,20 @@ function removePersonFromSheets_(attendanceSpreadsheet, group, row, name) {
       SpreadsheetApp.flush();
     } catch (rollbackError) {
       console.error("Roster removal rollback failed", rollbackError);
-      throw new Error("فشل الحذف ولم يكتمل استرجاع البيانات؛ راجعي الشيتين فورًا.");
+      throw new Error(
+        "فشل الحذف ولم يكتمل استرجاع البيانات؛ راجعي الشيتين فورًا.",
+      );
     }
     throw error;
   }
 }
 
-function updatePersonInSheets_(attendanceSpreadsheet, group, currentName, person) {
+function updatePersonInSheets_(
+  attendanceSpreadsheet,
+  group,
+  currentName,
+  person,
+) {
   const config = getAttendanceConfig_(group);
   const attendanceSheet = findAttendanceSheet_(
     attendanceSpreadsheet,
@@ -1549,13 +2107,18 @@ function updatePersonInSheets_(attendanceSpreadsheet, group, currentName, person
   const dataRow = dataRows[0];
   const normalizedNewName = normalizeText(person.name);
   if (normalizedNewName !== normalizeText(currentName)) {
-    if (getChildren(attendanceSheet, group).some(
-      (child) => child.row !== attendanceChild.row &&
-        normalizeText(child.name) === normalizedNewName,
-    )) {
+    if (
+      getChildren(attendanceSheet, group).some(
+        (child) =>
+          child.row !== attendanceChild.row &&
+          normalizeText(child.name) === normalizedNewName,
+      )
+    ) {
       throw new Error("يوجد شخص بهذا الاسم بالفعل في مجموعة الغياب.");
     }
-    if (findDataPersonRows_(section, person.name).some((row) => row !== dataRow)) {
+    if (
+      findDataPersonRows_(section, person.name).some((row) => row !== dataRow)
+    ) {
       throw new Error("يوجد شخص بهذا الاسم بالفعل في قسمه بشيت البيانات.");
     }
   }
@@ -1568,30 +2131,35 @@ function updatePersonInSheets_(attendanceSpreadsheet, group, currentName, person
   const newEnrollmentKey = getEnrollmentDatePropertyKey_(group, person.name);
   const properties = PropertiesService.getScriptProperties();
   const oldEnrollmentDate = properties.getProperty(oldEnrollmentKey);
-  const newEnrollmentDate = oldEnrollmentKey === newEnrollmentKey
-    ? oldEnrollmentDate
-    : properties.getProperty(newEnrollmentKey);
+  const newEnrollmentDate =
+    oldEnrollmentKey === newEnrollmentKey
+      ? oldEnrollmentDate
+      : properties.getProperty(newEnrollmentKey);
   if (
     oldEnrollmentKey !== newEnrollmentKey &&
     oldEnrollmentDate &&
     newEnrollmentDate
   ) {
-    throw new Error("توجد بيانات تسجيل مرتبطة بالاسم الجديد؛ لم يتم تحديث أي سجل.");
+    throw new Error(
+      "توجد بيانات تسجيل مرتبطة بالاسم الجديد؛ لم يتم تحديث أي سجل.",
+    );
   }
 
   try {
     attendanceRange.setValue(person.name);
-    dataRange.setValues([[
-      person.name,
-      person.phone,
-      person.homeNumber,
-      person.street,
-      person.area,
-      person.birthDate,
-      person.confessionFather,
-      person.location,
-      person.notes,
-    ]]);
+    dataRange.setValues([
+      [
+        person.name,
+        person.phone,
+        person.homeNumber,
+        person.street,
+        person.area,
+        person.birthDate,
+        person.confessionFather,
+        person.location,
+        person.notes,
+      ],
+    ]);
     if (oldEnrollmentKey !== newEnrollmentKey && oldEnrollmentDate) {
       properties.setProperty(newEnrollmentKey, oldEnrollmentDate);
       properties.deleteProperty(oldEnrollmentKey);
@@ -1603,15 +2171,19 @@ function updatePersonInSheets_(attendanceSpreadsheet, group, currentName, person
       restoreRow_(attendanceRange, attendanceSnapshot);
       restoreRow_(dataRange, dataSnapshot);
       if (oldEnrollmentKey !== newEnrollmentKey) {
-        if (oldEnrollmentDate) properties.setProperty(oldEnrollmentKey, oldEnrollmentDate);
+        if (oldEnrollmentDate)
+          properties.setProperty(oldEnrollmentKey, oldEnrollmentDate);
         else properties.deleteProperty(oldEnrollmentKey);
-        if (newEnrollmentDate) properties.setProperty(newEnrollmentKey, newEnrollmentDate);
+        if (newEnrollmentDate)
+          properties.setProperty(newEnrollmentKey, newEnrollmentDate);
         else properties.deleteProperty(newEnrollmentKey);
       }
       SpreadsheetApp.flush();
     } catch (rollbackError) {
       console.error("Roster update rollback failed", rollbackError);
-      throw new Error("فشل التحديث ولم يكتمل استرجاع البيانات؛ راجعي الشيتين فورًا.");
+      throw new Error(
+        "فشل التحديث ولم يكتمل استرجاع البيانات؛ راجعي الشيتين فورًا.",
+      );
     }
     throw error;
   }
@@ -1643,8 +2215,10 @@ function getFridayDateHeaderDiagnostics_(sheet, timezone) {
     let fridayDateCount = 0;
     headers.forEach((value) => {
       if (value !== "" && value !== null) nonEmptyCellCount += 1;
-      if (value instanceof Date && !isNaN(value.getTime())) dateObjectCount += 1;
-      if (typeof value === "number" && isGoogleDateSerial_(value)) numericDateCount += 1;
+      if (value instanceof Date && !isNaN(value.getTime()))
+        dateObjectCount += 1;
+      if (typeof value === "number" && isGoogleDateSerial_(value))
+        numericDateCount += 1;
       if (normalizeDate(value, timezone)) parseableDateCount += 1;
       if (isFridayDateHeader(value, timezone)) fridayDateCount += 1;
     });
@@ -1696,7 +2270,8 @@ function isGoogleDateSerial_(value) {
 function isChildName_(value) {
   const name = normalizeText(value);
   if (!name || isSummaryRow(name) || isGroupName_(name)) return false;
-  if (/^(?:الحضور|الغياب|النسبة|الأسم|الاسم|بنين|بنات)$/u.test(name)) return false;
+  if (/^(?:الحضور|الغياب|النسبة|الأسم|الاسم|بنين|بنات)$/u.test(name))
+    return false;
   if (/^[\d\s=+*/_.-]+$/u.test(name) || name.startsWith("=")) return false;
   return true;
 }
@@ -1752,7 +2327,8 @@ function normalizeDate(value, timezone) {
       parsed.getFullYear() !== year ||
       parsed.getMonth() !== month - 1 ||
       parsed.getDate() !== day
-    ) return "";
+    )
+      return "";
     return `${day}/${month}/${year}`;
   }
 
@@ -1766,14 +2342,19 @@ function normalizeDate(value, timezone) {
     parsed.getFullYear() !== year ||
     parsed.getMonth() !== month - 1 ||
     parsed.getDate() !== day
-  ) return "";
+  )
+    return "";
   return `${day}/${month}/${year}`;
 }
 
 function parseSheetDate_(value) {
-  const match = String(value || "").trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  const match = String(value || "")
+    .trim()
+    .match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
   if (!match) return null;
-  const date = new Date(Date.UTC(Number(match[3]), Number(match[2]) - 1, Number(match[1])));
+  const date = new Date(
+    Date.UTC(Number(match[3]), Number(match[2]) - 1, Number(match[1])),
+  );
   if (
     date.getUTCFullYear() !== Number(match[3]) ||
     date.getUTCMonth() !== Number(match[2]) - 1 ||
@@ -1785,14 +2366,18 @@ function parseSheetDate_(value) {
 }
 
 function normalizeText(value) {
-  return String(value || "").trim().replace(/\s+/g, " ");
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, " ");
 }
 
 function isSummaryRow(value) {
   const normalized = normalizeText(value).replace(/[:：]\s*\d+\s*$/, "");
-  return SUMMARY_LABEL_PATTERN.test(normalized) ||
+  return (
+    SUMMARY_LABEL_PATTERN.test(normalized) ||
     /^(?:(?:ال)?(?:عدد|مجموع|إجمال[يى]|اجمال[يى]))(?:\s|$)/u.test(normalized) ||
-    /^\d+$/.test(normalized);
+    /^\d+$/.test(normalized)
+  );
 }
 
 function isFridayDateHeader(value, timezone) {
@@ -1815,7 +2400,7 @@ function safeEqual(left, right) {
 }
 
 function json(data) {
-  return ContentService
-    .createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(
+    ContentService.MimeType.JSON,
+  );
 }
