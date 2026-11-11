@@ -1,4 +1,5 @@
 import { getSupabaseConfig } from "@/lib/supabase/config";
+import { isInvalidRefreshTokenError } from "@/lib/auth/session-errors";
 import { createServerClient } from "@supabase/ssr";
 import type { Database } from "@/types/database";
 import { NextResponse, type NextRequest } from "next/server";
@@ -26,6 +27,15 @@ export async function proxy(request: NextRequest) {
   });
 
   const { error } = await supabase.auth.getUser();
+  if (isInvalidRefreshTokenError(error)) {
+    const { error: signOutError } = await supabase.auth.signOut({
+      scope: "local",
+    });
+    if (signOutError) {
+      throw new Error("تعذر إنهاء جلسة Supabase المنتهية.");
+    }
+    return response;
+  }
   if (error && error.name !== "AuthSessionMissingError") {
     throw new Error("تعذر تحديث جلسة Supabase.");
   }

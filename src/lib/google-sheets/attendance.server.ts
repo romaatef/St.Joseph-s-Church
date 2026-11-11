@@ -6,6 +6,19 @@ import type { FiveSixChildRow } from "@/types/google-sheets";
 
 export const ATTENDANCE_STAGES = [
   {
+    id: "kg",
+    name: "K.G",
+    dataSpreadsheetId: "10c7C4VkEtHfg-z4bQ4_WHxFB0VRoztW7",
+    attendanceSpreadsheetId: "1S19IVVQvJ32y9nIfS0IJk0C0D_MgG75NVGHT6zmbtG8",
+    groups: [
+      { id: "kg-servants", name: "خدام", dataAliases: ["خدام"], attendanceAliases: ["خدام"], dataRows: [5, 17], attendanceRows: [3, 15] },
+      { id: "kg-g1-boys", name: "كي جي 1 بنين", dataAliases: ["كي جي 1 بنين", "كي جي 1 ولاد", "KG 1 Boys"], attendanceAliases: ["كي جي 1 ولاد"], dataRows: [19, 38], attendanceRows: [58, 84] },
+      { id: "kg-g2-boys", name: "كي جي 2 بنين", dataAliases: ["كي جي 2 بنين", "كي جي 2 ولاد", "KG 2 Boys"], attendanceAliases: ["كي جي 2 ولاد"], dataRows: [40, 57], attendanceRows: [88, 105] },
+      { id: "kg-g1-girls", name: "كي جي 1 بنات", dataAliases: ["كي جي 1 بنات", "KG 1 Girls"], dataRows: [59, 93], attendanceRows: [19, 54] },
+      { id: "kg-g2-girls", name: "كي جي 2 بنات", dataAliases: ["كي جي 2 بنات", "KG 2 Girls"], dataRows: [95, 104], attendanceRows: [109, 118] },
+    ],
+  },
+  {
     id: "g1-g2",
     name: "أولى وتانية",
     dataSpreadsheetId: "18r_3eOrq0zoM4-sSDfjLPbOdJ7NSbb9L",
@@ -207,8 +220,10 @@ type ScriptResponse<T> = { success: true } & T;
 
 function getAttendanceConfig(stageId: StageId) {
   const scriptUrl = (
-    stageId === "g1-g2"
-      ? process.env.ATTENDANCE_SCRIPT_URL
+    stageId === "kg"
+      ? process.env.KG_ATTENDANCE_SCRIPT_URL
+      : stageId === "g1-g2"
+        ? process.env.ATTENDANCE_SCRIPT_URL
       : stageId === "g3-g4"
         ? process.env.G3_G4_ATTENDANCE_SCRIPT_URL
         : stageId === "g5-g6"

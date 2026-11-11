@@ -1,4 +1,52 @@
 const STAGES = {
+  kg: {
+    enabled: true,
+    name: "K.G",
+    dataSpreadsheetId: "10c7C4VkEtHfg-z4bQ4_WHxFB0VRoztW7",
+    attendanceSpreadsheetId: "1S19IVVQvJ32y9nIfS0IJk0C0D_MgG75NVGHT6zmbtG8",
+    dataSheetId: 607355164,
+    attendanceSheetId: 1548293530,
+    groups: [
+      {
+        id: "kg-servants",
+        name: "خدام",
+        dataAliases: ["خدام"],
+        attendanceAliases: ["خدام"],
+        dataRows: [5, 17],
+        attendanceRows: [3, 15],
+      },
+      {
+        id: "kg-g1-boys",
+        name: "كي جي 1 بنين",
+        dataAliases: ["كي جي 1 بنين", "كي جي 1 ولاد", "KG 1 Boys"],
+        attendanceAliases: ["كي جي 1 ولاد"],
+        dataRows: [19, 38],
+        attendanceRows: [58, 84],
+      },
+      {
+        id: "kg-g2-boys",
+        name: "كي جي 2 بنين",
+        dataAliases: ["كي جي 2 بنين", "كي جي 2 ولاد", "KG 2 Boys"],
+        attendanceAliases: ["كي جي 2 ولاد"],
+        dataRows: [40, 57],
+        attendanceRows: [88, 105],
+      },
+      {
+        id: "kg-g1-girls",
+        name: "كي جي 1 بنات",
+        dataAliases: ["كي جي 1 بنات", "KG 1 Girls"],
+        dataRows: [59, 93],
+        attendanceRows: [19, 54],
+      },
+      {
+        id: "kg-g2-girls",
+        name: "كي جي 2 بنات",
+        dataAliases: ["كي جي 2 بنات", "KG 2 Girls"],
+        dataRows: [95, 104],
+        attendanceRows: [109, 118],
+      },
+    ],
+  },
   "g1-g2": {
     name: "أولى وتانية",
     dataSpreadsheetId: "18r_3eOrq0zoM4-sSDfjLPbOdJ7NSbb9L",
@@ -943,10 +991,12 @@ function getAttendanceHistoryWithContext_(groupId, context) {
 function findAttendanceSheet_(spreadsheet, requiredGroups) {
   validateAttendanceRowRanges_(requiredGroups);
   const stageId = getGroupConfig_(requiredGroups[0].id).stageId;
-  const sheetName = STAGES[stageId].attendanceSheetName;
+  const stage = STAGES[stageId];
   let sheets = spreadsheet.getSheets();
-  if (sheetName) {
-    const namedSheet = spreadsheet.getSheetByName(sheetName);
+  if (stage.attendanceSheetId !== undefined) {
+    sheets = [getConfiguredStageSheet_(spreadsheet, stage, "attendance")];
+  } else if (stage.attendanceSheetName) {
+    const namedSheet = spreadsheet.getSheetByName(stage.attendanceSheetName);
     if (namedSheet) sheets = [namedSheet];
   }
   const timezone = spreadsheet.getSpreadsheetTimeZone();
@@ -1251,6 +1301,23 @@ function getDataSpreadsheet_(group) {
   return SpreadsheetApp.openById(getAttendanceConfig_(group).dataSpreadsheetId);
 }
 
+function getConfiguredStageSheet_(spreadsheet, stage, kind) {
+  const sheetId = kind === "data" ? stage.dataSheetId : stage.attendanceSheetId;
+  if (sheetId !== undefined) {
+    if (!Number.isSafeInteger(sheetId) || sheetId < 0) {
+      throw new Error("معرّف تبويب المرحلة غير صالح.");
+    }
+    const sheet = spreadsheet.getSheetById(sheetId);
+    if (!sheet)
+      throw new Error("تعذر العثور على تبويب المرحلة بالـ gid المحدد.");
+    return sheet;
+  }
+
+  const sheetName =
+    kind === "data" ? stage.dataSheetName : stage.attendanceSheetName;
+  return sheetName ? spreadsheet.getSheetByName(sheetName) : null;
+}
+
 function getConfiguredDataRows_(stage, group) {
   if (
     !Array.isArray(group.dataRows) ||
@@ -1347,9 +1414,7 @@ function getStageChildrenRows_(stage) {
   }
 
   const spreadsheet = SpreadsheetApp.openById(stage.dataSpreadsheetId);
-  let sheet = stage.dataSheetName
-    ? spreadsheet.getSheetByName(stage.dataSheetName)
-    : null;
+  let sheet = getConfiguredStageSheet_(spreadsheet, stage, "data");
   if (!sheet) {
     const sheets = spreadsheet.getSheets();
     const matchingSheets = sheets.filter((candidate) =>
@@ -1453,7 +1518,8 @@ function isDataSectionHeading_(value) {
 function diagnoseServantsDataSheets() {
   const stage = STAGES.servants;
   const targetGroup = stage.groups.find((group) => group.id === "servants-had");
-  if (!targetGroup) throw new Error("حضانة الحد غير موجودة في إعدادات مرحلة الخدام.");
+  if (!targetGroup)
+    throw new Error("حضانة الحد غير موجودة في إعدادات مرحلة الخدام.");
 
   const spreadsheet = SpreadsheetApp.openById(stage.dataSpreadsheetId);
   const stageAliases = stage.groups
@@ -1536,7 +1602,9 @@ function getDataSection_(spreadsheet, group) {
   const config = getAttendanceConfig_(group);
   const stage = STAGES[config.stageId];
   let sheets = spreadsheet.getSheets();
-  if (stage.dataSheetName) {
+  if (stage.dataSheetId !== undefined) {
+    sheets = [getConfiguredStageSheet_(spreadsheet, stage, "data")];
+  } else if (stage.dataSheetName) {
     const namedSheet = spreadsheet.getSheetByName(stage.dataSheetName);
     if (namedSheet) {
       sheets = [namedSheet];
@@ -1550,7 +1618,10 @@ function getDataSection_(spreadsheet, group) {
           sheets.length === 1 &&
           onlySheet.getMaxColumns() >= 10 &&
           stage.groups.every((group) => {
-            const [startRow, endRow] = getConfiguredDataRows_(stage, group).rows;
+            const [startRow, endRow] = getConfiguredDataRows_(
+              stage,
+              group,
+            ).rows;
             return (
               startRow >= 2 &&
               endRow >= startRow &&

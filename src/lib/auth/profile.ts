@@ -1,4 +1,5 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isInvalidRefreshTokenError } from "@/lib/auth/session-errors";
 import type { StageId } from "@/config/stages";
 import type { UserRole } from "@/types/database";
 
@@ -17,7 +18,12 @@ export async function getCurrentProfile(): Promise<AuthProfile | null> {
     error: userError,
   } = await supabase.auth.getUser();
 
-  if (userError?.name === "AuthSessionMissingError") return null;
+  if (
+    userError?.name === "AuthSessionMissingError" ||
+    isInvalidRefreshTokenError(userError)
+  ) {
+    return null;
+  }
   if (userError) throw new Error("تعذر التحقق من جلسة المستخدم.");
   if (!user) return null;
 

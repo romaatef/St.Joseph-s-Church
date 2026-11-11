@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
 import type { BirthdayEntry } from "@/lib/google-sheets/birthdays";
 import type { StageId } from "@/config/stages";

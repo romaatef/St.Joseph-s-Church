@@ -24,7 +24,7 @@ export type Stage = {
 
 export const STAGES: readonly Stage[] = [
   { id: "had-nursery", name: "حضانة الحد", order: 1, sheetsLinked: false },
-  { id: "kg", name: "K.G", order: 2, sheetsLinked: false },
+  { id: "kg", name: "K.G", order: 2, sheetsLinked: true },
   { id: "g1-g2", name: "أولى وتانية", order: 3, sheetsLinked: true },
   { id: "g3-g4", name: "تالتة ورابعة", order: 4, sheetsLinked: true },
   { id: "g5-g6", name: "خامسة وسادسة", order: 5, sheetsLinked: true },
